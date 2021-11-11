@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-
+import 'screens/homescreen.dart';
+import 'package:lottie_animation/screens/homescreen.dart';
 void main() {
   runApp(MyApp());
 }
@@ -43,7 +44,7 @@ class _SplashScreenState extends State<SplashScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       body: Lottie.asset(
-        'assets/splash_lottie.json',
+        'assets/car_animated.json',
         controller: _controller,
         height: MediaQuery.of(context).size.height * 1,
         animate: true,
@@ -60,11 +61,4 @@ class _SplashScreenState extends State<SplashScreen>
   }
 }
 
-class HomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(child: Text('Homepage')),
-    );
-  }
-}
+
