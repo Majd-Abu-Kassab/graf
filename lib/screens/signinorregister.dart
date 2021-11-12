@@ -32,7 +32,7 @@ class _SignInOrRegisterState extends State<SignInOrRegister> {
                     begin: Alignment.bottomCenter,
                     end: Alignment.topCenter,
                     colors: [
-                      Color(0xFF1004d1),
+                      Colors.grey,
                       Colors.black.withOpacity(.1),
                     ])),
           ),
@@ -99,7 +99,7 @@ class _SignInOrRegisterState extends State<SignInOrRegister> {
                         margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
                         child: Center(
                             child: Text(
-                              "Don't have an account",
+                              "Don't have an account?",
                               style: TextStyle(
                                   fontSize: 16,
                                   color: Colors.white),
