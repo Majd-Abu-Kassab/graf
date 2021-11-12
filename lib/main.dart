@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'screens/homescreen.dart';
-import 'package:lottie_animation/screens/homescreen.dart';
+import 'screens/accountscreen.dart';
+import 'package:lottie_animation/screens/accountscreen.dart';
 void main() {
   runApp(MyApp());
 }

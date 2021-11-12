@@ -26,7 +26,7 @@ class _LoginState extends State<Login> {
         children: <Widget>[
           Image.asset(
             //TODO update this
-            'assets/animation_500.gif',
+            'assets/car1.gif',
             fit: BoxFit.fill,
             height: double.infinity,
             width: double.infinity,

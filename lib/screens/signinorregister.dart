@@ -21,7 +21,7 @@ class _SignInOrRegisterState extends State<SignInOrRegister> {
       body: Stack(
         children: <Widget>[
           Image.asset(
-            'assets/animation_500.gif',
+            'assets/car1.gif',
             fit: BoxFit.fill,
             height: double.infinity,
             width: double.infinity,
