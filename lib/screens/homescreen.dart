@@ -17,12 +17,16 @@ class MyApp extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  primary:Color(0xFF1004d1)
-                ),
-                onPressed: () {},
-                child: Text('RENT!',
+              Container(
+                width: 200.0,
+                height: 300.0,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary:Color(0xFF1004d1),
+                  ),
+                  onPressed: () {},
+                  child: Text('RENT',
+                  ),
                 ),
               ),
             ]),
