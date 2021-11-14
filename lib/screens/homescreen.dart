@@ -19,11 +19,16 @@ class MyApp extends StatelessWidget {
                 children: [
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
+                  elevation: 5,
+                  shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(20)),
                   primary:Color(0xFF1004d1),
-                  fixedSize: const Size(240, 81),
+                  fixedSize: const Size(240, 80),
                 ),
                 onPressed: () {},
-                child: Text('RENT',
+                child: Text('RENT',style: TextStyle(
+                  fontSize: 30.0,
+                  fontWeight: FontWeight.bold,
+                ),
                 ),
               ),
             ]),
