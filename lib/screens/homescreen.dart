@@ -12,15 +12,21 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         backgroundColor: Colors.blueGrey,
         body: SafeArea(
-          child: Column(children: [
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                primary:Color(0xFF1004d1)
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary:Color(0xFF1004d1)
+                ),
+                onPressed: () {},
+                child: Text('RENT!',
+                ),
               ),
-              onPressed: () {},
-              child: Text('RENT!'),
-            ),
-          ]),
+            ]),
+          ),
         ),
       ),
     );
