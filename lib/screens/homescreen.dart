@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   primary:Color(0xFF1004d1),
-                  fixedSize: const Size(240, 80),
+                  fixedSize: const Size(240, 81),
                 ),
                 onPressed: () {},
                 child: Text('RENT',
