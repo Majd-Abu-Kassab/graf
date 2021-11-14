@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.blueGrey,
+        backgroundColor: Color(0xFF333652),
         body: SafeArea(
           child: Center(
             child: Column(
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   elevation: 5,
                   shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(20)),
-                  primary:Color(0xFF1004d1),
+                  primary:Colors.amberAccent,
                   fixedSize: const Size(240, 80),
                 ),
                 onPressed: () {},
