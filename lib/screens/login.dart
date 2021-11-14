@@ -188,7 +188,7 @@ class _LoginState extends State<Login> {
                   margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
                   child: Center(
                       child: Text(
-                        "Don't have an account",
+                        "Don't have an account?",
                         style: TextStyle(
                             fontSize: 16,
                             color: Colors.white),
