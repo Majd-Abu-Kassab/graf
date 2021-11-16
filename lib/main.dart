@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:lottie_animation/screens/mapscreen.dart';
 import 'screens/accountscreen.dart';
 import 'package:lottie_animation/screens/accountscreen.dart';
+
+
 void main() {
   runApp(MyApp());
 }
@@ -10,12 +13,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Splash Screen with Lottie Animation',
+      initialRoute: '/',
+      routes: {
+        '/mapscreen': (context) =>  mapscreen(),
+      },
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: SplashScreen(),
+      // home: SplashScreen(),
     );
   }
 }
