@@ -37,7 +37,7 @@ class Button1 extends StatelessWidget {
                   Navigator.push(context, MaterialPageRoute(builder: (BuildContext)=> mapscreen()));
                 },
                 child: Text(
-                  'RENT!',
+                  'RENT!!',
                   style: TextStyle(
                     fontSize: 30.0,
                     fontWeight: FontWeight.bold,
