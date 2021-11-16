@@ -10,7 +10,7 @@ class mapscreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.teal,
+        backgroundColor: Colors.red,
         body: SafeArea(
           child: Column(),
         ),
