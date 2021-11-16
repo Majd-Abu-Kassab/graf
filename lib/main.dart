@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:lottie_animation/screens/mapscreen.dart';
 import 'screens/accountscreen.dart';
 import 'package:lottie_animation/screens/accountscreen.dart';
 
@@ -13,15 +12,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: '/',
-      routes: {
-        '/mapscreen': (context) =>  mapscreen(),
-      },
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      // home: SplashScreen(),
+       home: SplashScreen(),
     );
   }
 }

@@ -51,7 +51,7 @@ class _RegisterState extends State<Register> {
                     begin: Alignment.bottomCenter,
                     end: Alignment.topCenter,
                     colors: [
-                      Colors.black.withOpacity(.9),
+                      Color(0xFF333652),
                       Colors.black.withOpacity(.1),
                     ])),
           ),

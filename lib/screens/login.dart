@@ -37,7 +37,7 @@ class _LoginState extends State<Login> {
                     begin: Alignment.bottomCenter,
                     end: Alignment.topCenter,
                     colors: [
-                      Colors.black.withOpacity(.9),
+                      Color(0xFF333652),
                       Colors.black.withOpacity(.1),
                     ])),
           ),

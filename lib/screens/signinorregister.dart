@@ -32,7 +32,7 @@ class _SignInOrRegisterState extends State<SignInOrRegister> {
                     begin: Alignment.bottomCenter,
                     end: Alignment.topCenter,
                     colors: [
-                      Colors.grey,
+                      Color(0xFF333652),
                       Colors.black.withOpacity(.1),
                     ])),
           ),

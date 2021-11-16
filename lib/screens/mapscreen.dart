@@ -2,10 +2,10 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(mapscreen());
+  runApp(Mapscreen());
 }
 
-class mapscreen extends StatelessWidget {
+class Mapscreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
