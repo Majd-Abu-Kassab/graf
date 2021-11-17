@@ -34,10 +34,10 @@ class Button1 extends StatelessWidget {
                   fixedSize: const Size(240, 80),
                 ),
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (BuildContext)=> Mapscreen()));
+                  Navigator.push(context, MaterialPageRoute(builder: (BuildContext)=> MapScreen()));
                 },
                 child: Text(
-                  'RENT',
+                  'RENT!!',
                   style: TextStyle(
                     fontSize: 30.0,
                     fontWeight: FontWeight.bold,
