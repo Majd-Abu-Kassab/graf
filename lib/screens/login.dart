@@ -48,7 +48,7 @@ class _LoginState extends State<Login> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Text(
-                  'WElcome',
+                  'Welcome',
                   style: TextStyle(
                     fontSize: 27.0,
                     color: Colors.white,

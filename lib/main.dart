@@ -40,7 +40,6 @@ class _SplashScreenState extends State<SplashScreen>
       vsync: this,
     );
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
