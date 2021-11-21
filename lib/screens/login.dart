@@ -1,6 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lottie_animation/screens/register.dart';
+import 'package:lottie_animation/components/rounded_button.dart';
+import'homescreen.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -8,13 +11,15 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  final _auth= FirebaseAuth.instance;
+  String email;
+  String password;
 
   @override
   Widget build(BuildContext context) {
 
     //test feild state
-    String email = "";
-    String password = "";
+
     //for showing loading
 
     // this below line is used to make notification bar transparent
@@ -98,6 +103,9 @@ class _LoginState extends State<Login> {
                         margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
                         padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
                         child: TextField(
+                          onChanged: (value){
+                            email=value;
+                          },
                           textAlign: TextAlign.center,
                           decoration: InputDecoration(
                               hintText: 'Email',
@@ -145,6 +153,9 @@ class _LoginState extends State<Login> {
                         margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
                         padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
                         child: TextField(
+                          onChanged: (value){
+                            password=value;
+                          },
                           textAlign: TextAlign.center,
                           decoration: InputDecoration(
                             hintText: 'Password',
@@ -162,21 +173,16 @@ class _LoginState extends State<Login> {
                 SizedBox(
                   height: 10,
                 ),
-                Container(
-                  height: 50,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(50)
-                  ),
-                  margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
-                  child: Center(
-                      child: Text(
-                        'Register',
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.black),
-                      )),
-                ),
+               RoundedButton(
+                 title: 'Login',
+                 colour: Colors.blueAccent,
+                 onPressed: (){
+                   final user=_auth.signInWithEmailAndPassword(email:email, password: password);
+                   if (user!=null){
+                     Navigator.push(context,MaterialPageRoute(builder: (context) => Homescreen()),);
+                   }
+                 },
+               ),
                 SizedBox(
                   height: 10,
                 ),

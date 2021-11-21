@@ -12,205 +12,116 @@ class CompleteProfile extends StatefulWidget {
 }
 
 class _CompleteProfileState extends State<CompleteProfile> {
-  final _formKey = GlobalKey<FormState>();
-
-  TextEditingController _nameController = TextEditingController();
-  TextEditingController _IDController = TextEditingController();
-  TextEditingController _licenseController = TextEditingController();
-  TextEditingController _contactController = TextEditingController();
-
-  // String _imageUrl;
-
-  AppUser user = AppUser();
-
-  FirebaseFunctions firebaseFunctions = FirebaseFunctions();
-
-  void initAppUser() {
-    user.name = _nameController.text;
-    user.licenseNumber = _licenseController.text;
-    user.contact = _contactController.text;
-    user.ID = _IDController.text;
-    // user.dpURL = _imageUrl;
-    user.emailID = FirebaseAuth.instance.currentUser.email;
-    user.hasCompleteProfile = true;
-  }
+  String idnumber;
+  String licensenumber;
+  String name;
+  String phone_number;
 
   @override
   Widget build(BuildContext context) {
-    Size deviceSize = MediaQuery.of(context).size;
+    //TODO update what details you want
+
+    //for showing loading
+    bool loading = false;
+
+    // this below line is used to make notification bar transparent
+    // SystemChrome.setSystemUIOverlayStyle(
+    //     SystemUiOverlayStyle(statusBarColor: Colors.transparent));
 
     return Scaffold(
-      body: Builder(
-        builder: (context) {
-          return Form(
-            key: _formKey,
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    // GestureDetector(
-                    //   onTap: () async {
-                    //     String image = await Navigator.push(
-                    //       context,
-                    //       MaterialPageRoute(
-                    //         builder: (context) {
-                    //           return ImageSelectAndCrop();
-                    //         },
-                    //       ),
-                    //     ) as String;
-                    //
-                    //     setState(() {
-                    //       _imageUrl = image;
-                    //     });
-                    //   },
-                    //   child: Container(
-                    //     width: 0.4 * deviceSize.width,
-                    //     height: 0.4 * deviceSize.width,
-                    //     child: Center(
-                    //       child: (_imageUrl != null)
-                    //           ? CachedNetworkImage(
-                    //               imageUrl: _imageUrl,
-                    //               imageBuilder: (context, imageProvider) =>
-                    //                   CircleAvatar(
-                    //                 backgroundImage: imageProvider,
-                    //                 radius: 0.2 * deviceSize.width,
-                    //               ),
-                    //               progressIndicatorBuilder:
-                    //                   (context, url, downloadProgress) =>
-                    //                       CircularProgressIndicator(
-                    //                           value: downloadProgress.progress),
-                    //               errorWidget: (context, url, error) => Icon(
-                    //                 Icons.error,
-                    //                 size: 40.0,
-                    //               ),
-                    //             )
-                    //           : CircleAvatar(
-                    //               radius: 0.2 * deviceSize.width,
-                    //               child: Icon(
-                    //                 Icons.person,
-                    //                 size: 40.0,
-                    //               ),
-                    //             ),
-                    //     ),
-                    //   ),
-                    // ),
-                    CustomBackButton(
-                      pageHeader: 'Complete your profile',
-                    ),
-
-                    SizedBox(
-                      height: 20,
-                    ),
-                    InputFormField(
-                      fieldName: 'Name',
-                      obscure: false,
-                      validator: ValidationService().nameValidator,
-                      controller: _nameController,
-                    ),
-                    SizedBox(
-                      height: 0.03 * deviceSize.height,
-                    ),
-
-                    InputFormField(
-                      fieldName: 'Contact Number',
-                      obscure: false,
-                      validator: ValidationService().contactValidator,
-                      controller: _contactController,
-                    ),
-                    SizedBox(
-                      height: 0.03 * deviceSize.height,
-                    ),
-                    InputFormField(
-                      fieldName: 'ID Number',
-                      obscure: false,
-                      validator: ValidationService().IDValidator,
-                      controller: _IDController,
-                    ),
-                    SizedBox(
-                      height: 0.03 * deviceSize.height,
-                    ),
-                    InputFormField(
-                      fieldName: 'License Number',
-                      obscure: false,
-                      validator: ValidationService().licenseValidator,
-                      controller: _licenseController,
-                    ),
-                    SizedBox(
-                      height: 0.05 * deviceSize.height,
-                    ),
-                    GestureDetector(
-                      onTap: () async {
-                        // if (_formKey.currentState.validate() &&
-                        //     _imageUrl != null) {
-                        //   ///Tell the user that process has started
-                        //   Scaffold.of(context).showSnackBar(
-                        //       SnackBar(content: Text('Processing')));
-                        //
-                        //   ///Testing url
-                        //   print(_imageUrl);
-                        //
-                        //   ///Initialize User after successful validation of fields
-                        //   initAppUser();
-                        //
-                        //   ///Make the call to upload user data
-                        //   String isComplete = await firebaseFunctions
-                        //       .uploadUserData(user.toMap());
-                        //
-                        //   ///Check if it was uploaded successfully or else show the error
-                        //   if (isComplete == 'true') {
-                        //     Navigator.push(
-                        //       context,
-                        //       MaterialPageRoute(
-                        //         builder: (context) {
-                        //           return HomePage();
-                        //         },
-                        //       ),
-                        //     );
-                        //   } else {
-                        //     Scaffold.of(context).showSnackBar(
-                        //         SnackBar(content: Text(isComplete)));
-                        //   }
-                        // }
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text('Processing')));
-                        initAppUser();
-                        String isComplete = await firebaseFunctions
-                            .uploadUserData(user.toMap());
-                        if (isComplete == 'true') {
-                          await Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return Homescreen();
-                              },
+      body: Stack(
+        children: <Widget>[
+          Container(
+            height: double.infinity,
+            width: double.infinity,
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.bottomCenter,
+                    end: Alignment.topCenter,
+                    colors: [
+                      Color(0xFF333652),
+                      Colors.black.withOpacity(.1),
+                    ])),
+          ),
+          Padding(
+            padding: EdgeInsets.only(bottom: 60),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  'PARKKING',
+                  style: TextStyle(
+                    fontSize: 27.0,
+                    color: Colors.white,
+                  ),
+                ),
+                SizedBox(
+                  height: 4,
+                ),
+                Text(
+                  //TODO update this
+                  'Complete your Profile',
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    color: Colors.white,
+                  ),
+                ),
+                SizedBox(
+                  height: 16,
+                ),
+                Stack(
+                  children: <Widget>[
+                    Container(
+                        width: double.infinity,
+                        margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                        padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                        height: 50,
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.white),
+                            borderRadius: BorderRadius.circular(50)),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Container(
+                              margin: EdgeInsets.only(left: 20),
+                              height: 22,
+                              width: 22,
+                              child: Icon(
+                                Icons.email,
+                                color: Colors.white,
+                                size: 20,
+                              ),
                             ),
-                          );
-                        } else {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text(isComplete)));
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return CompleteProfile();
-                              },
-                            ),
-                          );
-                        }
-                      },
-                      child: CustomButton(
-                        text: 'Save',
-                      ),
-                    ),
+                          ],
+                        )),
+                    Container(
+                        height: 50,
+                        margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                        padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
+                        child: TextField(
+                          onChanged: (value) {
+                            email = value;
+                          },
+                          textAlign: TextAlign.center,
+                          decoration: InputDecoration(
+                              hintText: 'Email',
+                              focusedBorder: InputBorder.none,
+                              border: InputBorder.none,
+                              hintStyle: TextStyle(color: Colors.white70)),
+                          style: TextStyle(fontSize: 16, color: Colors.white),
+                        )),
                   ],
                 ),
-              ),
+                // national id number
+                SizedBox(
+                  height: 16,
+                ),
+              ],
             ),
-          );
-        },
-      ),
+          ),
+        ],),
+
     );
   }
 }

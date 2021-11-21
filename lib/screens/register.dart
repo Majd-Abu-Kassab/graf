@@ -1,13 +1,9 @@
-//add new user:
-// email
-//password
-//name
-// driving licence Id.
-//Id number.
-
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:lottie_animation/components/rounded_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lottie_animation/screens/login.dart';
+import 'package:lottie_animation/screens/homescreen.dart';
 
 class Register extends StatefulWidget {
   @override
@@ -15,16 +11,13 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
+  final _auth=FirebaseAuth.instance;
+  String email;
+  String password;
+
   @override
   Widget build(BuildContext context) {
-
     //TODO update what details you want
-    //test feild state
-    String email = "";
-    String password = "";
-    String name = "";
-    String ID = "";
-    String phonenumber = "";
 
     //for showing loading
     bool loading = false;
@@ -51,9 +44,9 @@ class _RegisterState extends State<Register> {
                     begin: Alignment.bottomCenter,
                     end: Alignment.topCenter,
                     colors: [
-                      Color(0xFF333652),
-                      Colors.black.withOpacity(.1),
-                    ])),
+                  Color(0xFF333652),
+                  Colors.black.withOpacity(.1),
+                ])),
           ),
           Padding(
             padding: EdgeInsets.only(bottom: 60),
@@ -112,17 +105,16 @@ class _RegisterState extends State<Register> {
                         margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
                         padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
                         child: TextField(
+                          onChanged: (value) {
+                            email = value;
+                          },
                           textAlign: TextAlign.center,
                           decoration: InputDecoration(
                               hintText: 'Email',
                               focusedBorder: InputBorder.none,
                               border: InputBorder.none,
-                              hintStyle: TextStyle(
-                                  color: Colors.white70
-                              )
-                          ),
-                          style: TextStyle(fontSize: 16,
-                              color: Colors.white),
+                              hintStyle: TextStyle(color: Colors.white70)),
+                          style: TextStyle(fontSize: 16, color: Colors.white),
                         )),
                   ],
                 ),
@@ -130,196 +122,7 @@ class _RegisterState extends State<Register> {
                 SizedBox(
                   height: 16,
                 ),
-                Stack(
-                  children: <Widget>[
-                    Container(
-                        width: double.infinity,
-                        margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
-                        padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                        height: 50,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.white),
-                            borderRadius: BorderRadius.circular(50)),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                            Container(
-                              margin: EdgeInsets.only(left: 20),
-                              height: 22,
-                              width: 22,
-                              child: Icon(
-                                Icons.badge ,
-                                color: Colors.white,
-                                size: 20,
-                              ),
-                            ),
-                          ],
-                        )),
-                    Container(
-                        height: 50,
-                        margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
-                        padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
-                        child: TextField(
-                          textAlign: TextAlign.center,
-                          decoration: InputDecoration(
-                              hintText: 'Name',
-                              focusedBorder: InputBorder.none,
-                              border: InputBorder.none,
-                              hintStyle: TextStyle(
-                                  color: Colors.white70
-                              )
-                          ),
-                          style: TextStyle(fontSize: 16,
-                              color: Colors.white),
-                        )),
-                  ],
-                ),
-                SizedBox(
-                  height: 16,
-                ),
                 //TODO remove unwanted containers
-                Stack(
-                  children: <Widget>[
-                    Container(
-                        width: double.infinity,
-                        margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
-                        padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                        height: 50,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.white),
-                            borderRadius: BorderRadius.circular(50)),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                            Container(
-                              margin: EdgeInsets.only(left: 20),
-                              height: 22,
-                              width: 22,
-                              child: Icon(
-                                Icons.account_box,
-                                color: Colors.white,
-                                size: 20,
-                              ),
-                            ),
-                          ],
-                        )),
-                    Container(
-                        height: 50,
-                        margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
-                        padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
-                        child: TextField(
-                          textAlign: TextAlign.center,
-                          decoration: InputDecoration(
-                              hintText: 'National ID Number',
-                              focusedBorder: InputBorder.none,
-                              border: InputBorder.none,
-                              hintStyle: TextStyle(
-                                  color: Colors.white70
-                              )
-                          ),
-                          style: TextStyle(fontSize: 16,
-                              color: Colors.white),
-                        )),
-                  ],
-                ),
-                SizedBox(
-                  height: 16,
-                ),
-                Stack(
-                  children: <Widget>[
-                    Container(
-                        width: double.infinity,
-                        margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
-                        padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                        height: 50,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.white),
-                            borderRadius: BorderRadius.circular(50)),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                            Container(
-                              margin: EdgeInsets.only(left: 20),
-                              height: 22,
-                              width: 22,
-                              child: Icon(
-                                Icons.account_box,
-                                color: Colors.white,
-                                size: 20,
-                              ),
-                            ),
-                          ],
-                        )),
-                    Container(
-                        height: 50,
-                        margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
-                        padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
-                        child: TextField(
-                          textAlign: TextAlign.center,
-                          decoration: InputDecoration(
-                              hintText: 'Licence ID NUmber',
-                              focusedBorder: InputBorder.none,
-                              border: InputBorder.none,
-                              hintStyle: TextStyle(
-                                  color: Colors.white70
-                              )
-                          ),
-                          style: TextStyle(fontSize: 16,
-                              color: Colors.white),
-                        )),
-                  ],
-                ),
-                //college
-                SizedBox(
-                  height: 16,
-                ),
-                Stack(
-                  children: <Widget>[
-                    Container(
-                        width: double.infinity,
-                        margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
-                        padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                        height: 50,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.white),
-                            borderRadius: BorderRadius.circular(50)),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                            Container(
-                              margin: EdgeInsets.only(left: 20),
-                              height: 22,
-                              width: 22,
-                              child: Icon(
-                                Icons.phone_android,
-                                color: Colors.white,
-                                size: 20,
-                              ),
-                            ),
-                          ],
-                        )),
-                    Container(
-                        height: 50,
-                        margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
-                        padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
-                        child: TextField(
-                          textAlign: TextAlign.center,
-                          decoration: InputDecoration(
-                              hintText: 'Phone Number',
-                              focusedBorder: InputBorder.none,
-                              border: InputBorder.none,
-                              hintStyle: TextStyle(
-                                  color: Colors.white70
-                              )
-                          ),
-                          style: TextStyle(fontSize: 16,
-                              color: Colors.white),
-                        )),
-                  ],
-                ),
-                SizedBox(
-                  height: 16,
-                ),
                 Stack(
                   children: <Widget>[
                     Container(
@@ -350,54 +153,59 @@ class _RegisterState extends State<Register> {
                         margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
                         padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
                         child: TextField(
+                          obscureText: true,
+                          onChanged: (value) {
+                            password = value;
+                          },
                           textAlign: TextAlign.center,
                           decoration: InputDecoration(
                             hintText: 'Password',
                             focusedBorder: InputBorder.none,
                             border: InputBorder.none,
-                            hintStyle: TextStyle(
-                                color: Colors.white70
-                            ),
+                            hintStyle: TextStyle(color: Colors.white70),
                           ),
-                          style: TextStyle(fontSize: 16,
-                              color: Colors.white),
+                          style: TextStyle(fontSize: 16, color: Colors.white),
                         )),
                   ],
                 ),
                 SizedBox(
                   height: 10,
                 ),
-                Container(
-                  height: 50,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(50)
-                  ),
-                  margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
-                  child: Center(
-                      child: Text(
-                        'Register',
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.black),
-                      )),
-                ),
+                RoundedButton(
+                    title: 'Register',
+                    colour: Colors.blueAccent,
+                    onPressed: ()async {
+                     try {
+                       final newUser = await _auth
+                           .createUserWithEmailAndPassword(
+                           email: email.trim(), password: password);
+                       if (newUser != null){
+                         Navigator.push(
+                           context,
+                           MaterialPageRoute(builder: (context) => Homescreen()),
+                         );
+                       }
+                     }
+                     catch(e){
+                       print(e);
+                     }
+                    }),
+
+
+
                 SizedBox(
                   height: 10,
                 ),
                 Container(
                   height: 50,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50)
-                  ),
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(50)),
                   margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
                   child: Center(
                       child: Text(
-                        "Already have an account",
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.white),
-                      )),
+                    "Already have an account",
+                    style: TextStyle(fontSize: 16, color: Colors.white),
+                  )),
                 ),
                 InkWell(
                   onTap: () {
@@ -408,18 +216,17 @@ class _RegisterState extends State<Register> {
                   },
                   child: Container(
                     height: 30,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50)
-                    ),
+                    decoration:
+                        BoxDecoration(borderRadius: BorderRadius.circular(50)),
                     margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
                     child: Center(
                         child: Text(
-                          "Login",
-                          style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold),
-                        )),
+                      "Login",
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                    )),
                   ),
                 ),
               ],
