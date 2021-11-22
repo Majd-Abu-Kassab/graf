@@ -5,6 +5,8 @@ import 'package:flutter/services.dart';
 import 'package:lottie_animation/screens/login.dart';
 import 'package:lottie_animation/screens/homescreen.dart';
 
+import 'complete_profile.dart';
+
 class Register extends StatefulWidget {
   @override
   _RegisterState createState() => _RegisterState();
@@ -182,7 +184,7 @@ class _RegisterState extends State<Register> {
                        if (newUser != null){
                          Navigator.push(
                            context,
-                           MaterialPageRoute(builder: (context) => Homescreen()),
+                           MaterialPageRoute(builder: (context) => CompleteProfile()),
                          );
                        }
                      }

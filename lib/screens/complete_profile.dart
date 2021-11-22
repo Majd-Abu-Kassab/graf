@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie_animation/components/rounded_button.dart';
 import 'package:lottie_animation/models/user.dart';
 import 'package:lottie_animation/screens/homescreen.dart';
 import 'package:lottie_animation/services/firebase_services.dart';
@@ -39,9 +41,9 @@ class _CompleteProfileState extends State<CompleteProfile> {
                     begin: Alignment.bottomCenter,
                     end: Alignment.topCenter,
                     colors: [
-                      Color(0xFF333652),
-                      Colors.black.withOpacity(.1),
-                    ])),
+                  Color(0xFF333652),
+                  Colors.black.withOpacity(.1),
+                ])),
           ),
           Padding(
             padding: EdgeInsets.only(bottom: 60),
@@ -88,7 +90,7 @@ class _CompleteProfileState extends State<CompleteProfile> {
                               height: 22,
                               width: 22,
                               child: Icon(
-                                Icons.email,
+                                Icons.account_box,
                                 color: Colors.white,
                                 size: 20,
                               ),
@@ -101,11 +103,57 @@ class _CompleteProfileState extends State<CompleteProfile> {
                         padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
                         child: TextField(
                           onChanged: (value) {
-                            email = value;
+                            name = value;
                           },
                           textAlign: TextAlign.center,
                           decoration: InputDecoration(
-                              hintText: 'Email',
+                              hintText: 'Name',
+                              focusedBorder: InputBorder.none,
+                              border: InputBorder.none,
+                              hintStyle: TextStyle(color: Colors.white70)),
+                          style: TextStyle(fontSize: 16, color: Colors.white),
+                        )),
+                  ],
+                ),
+                SizedBox(
+                  height: 16,
+                ),
+                Stack(
+                  children: <Widget>[
+                    Container(
+                        width: double.infinity,
+                        margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                        padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                        height: 50,
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.white),
+                            borderRadius: BorderRadius.circular(50)),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Container(
+                              margin: EdgeInsets.only(left: 20),
+                              height: 22,
+                              width: 22,
+                              child: Icon(
+                                Icons.phone_android,
+                                color: Colors.white,
+                                size: 20,
+                              ),
+                            ),
+                          ],
+                        )),
+                    Container(
+                        height: 50,
+                        margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                        padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
+                        child: TextField(
+                          onChanged: (value) {
+                            phone_number = value;
+                          },
+                          textAlign: TextAlign.center,
+                          decoration: InputDecoration(
+                              hintText: 'Phone Number',
                               focusedBorder: InputBorder.none,
                               border: InputBorder.none,
                               hintStyle: TextStyle(color: Colors.white70)),
@@ -117,11 +165,118 @@ class _CompleteProfileState extends State<CompleteProfile> {
                 SizedBox(
                   height: 16,
                 ),
+                Stack(
+                  children: <Widget>[
+                    Container(
+                        width: double.infinity,
+                        margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                        padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                        height: 50,
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.white),
+                            borderRadius: BorderRadius.circular(50)),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Container(
+                              margin: EdgeInsets.only(left: 20),
+                              height: 22,
+                              width: 22,
+                              child: Icon(
+                                Icons.account_box,
+                                color: Colors.white,
+                                size: 20,
+                              ),
+                            ),
+                          ],
+                        )),
+                    Container(
+                        height: 50,
+                        margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                        padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
+                        child: TextField(
+                          onChanged: (value) {
+                            idnumber = value;
+                          },
+                          textAlign: TextAlign.center,
+                          decoration: InputDecoration(
+                              hintText: 'ID Number',
+                              focusedBorder: InputBorder.none,
+                              border: InputBorder.none,
+                              hintStyle: TextStyle(color: Colors.white70)),
+                          style: TextStyle(fontSize: 16, color: Colors.white),
+                        )),
+                  ],
+                ),
+                // national id number
+                SizedBox(
+                  height: 16,
+                ),
+                Stack(
+                  children: <Widget>[
+                    Container(
+                        width: double.infinity,
+                        margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                        padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                        height: 50,
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.white),
+                            borderRadius: BorderRadius.circular(50)),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Container(
+                              margin: EdgeInsets.only(left: 20),
+                              height: 22,
+                              width: 22,
+                              child: Icon(
+                                Icons.account_box,
+                                color: Colors.white,
+                                size: 20,
+                              ),
+                            ),
+                          ],
+                        )),
+                    Container(
+                        height: 50,
+                        margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                        padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
+                        child: TextField(
+                          onChanged: (value) {
+                            licensenumber = value;
+                          },
+                          textAlign: TextAlign.center,
+                          decoration: InputDecoration(
+                              hintText: 'License Number',
+                              focusedBorder: InputBorder.none,
+                              border: InputBorder.none,
+                              hintStyle: TextStyle(color: Colors.white70)),
+                          style: TextStyle(fontSize: 16, color: Colors.white),
+                        )),
+                  ],
+                ),
+                // national id number
+                SizedBox(
+                  height: 16,
+                ),
+                RoundedButton(
+                  title: 'Save',
+                  colour: Colors.blueAccent,
+                  onPressed: () {
+                    FirebaseFirestore.instance
+                        .collection('CompleteProfile')
+                        .add({'name': name,
+                              'phone_number':phone_number,
+                               'idnumber': idnumber,
+                                'licensenumber':licensenumber,
+                    });
+                  },
+                )
               ],
             ),
           ),
-        ],),
-
+        ],
+      ),
     );
   }
 }
