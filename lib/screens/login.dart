@@ -4,6 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:lottie_animation/screens/register.dart';
 import 'package:lottie_animation/components/rounded_button.dart';
 import'homescreen.dart';
+import 'package:lottie_animation/models/user.dart';
+
 
 class Login extends StatefulWidget {
   @override
@@ -12,8 +14,8 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   final _auth= FirebaseAuth.instance;
-  String email;
-  String password;
+  AppUser userinfo = AppUser();
+
 
   @override
   Widget build(BuildContext context) {
@@ -104,7 +106,7 @@ class _LoginState extends State<Login> {
                         padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
                         child: TextField(
                           onChanged: (value){
-                            email=value;
+                            userinfo.email=value;
                           },
                           textAlign: TextAlign.center,
                           decoration: InputDecoration(
@@ -154,7 +156,7 @@ class _LoginState extends State<Login> {
                         padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
                         child: TextField(
                           onChanged: (value){
-                            password=value;
+                            userinfo.password=value;
                           },
                           textAlign: TextAlign.center,
                           decoration: InputDecoration(
@@ -177,7 +179,7 @@ class _LoginState extends State<Login> {
                  title: 'Login',
                  colour: Colors.blueAccent,
                  onPressed: (){
-                   final user=_auth.signInWithEmailAndPassword(email:email, password: password);
+                   final user=_auth.signInWithEmailAndPassword(email:userinfo.email, password: userinfo.password);
                    if (user!=null){
                      Navigator.push(context,MaterialPageRoute(builder: (context) => Homescreen()),);
                    }

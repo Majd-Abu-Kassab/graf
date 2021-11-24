@@ -1,6 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie_animation/components/rounded_button.dart';
+import 'package:lottie_animation/services/validation_services.dart';
+import 'package:lottie_animation/models/user.dart';
+
 
 class CompleteProfile extends StatefulWidget {
   @override
@@ -8,10 +11,10 @@ class CompleteProfile extends StatefulWidget {
 }
 
 class _CompleteProfileState extends State<CompleteProfile> {
-  String idnumber;
-  String licensenumber;
-  String name;
-  String phone_number;
+
+  AppUser user = AppUser();
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -97,8 +100,9 @@ class _CompleteProfileState extends State<CompleteProfile> {
                         padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
                         child: TextField(
                           onChanged: (value) {
-                            name = value;
+                            user.name = value;
                           },
+
                           textAlign: TextAlign.center,
                           decoration: InputDecoration(
                               hintText: 'Name',
@@ -141,10 +145,11 @@ class _CompleteProfileState extends State<CompleteProfile> {
                         height: 50,
                         margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
                         padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
-                        child: TextField(
+                        child: TextFormField(
                           onChanged: (value) {
-                            phone_number = value;
+                            user.phone_number = value;
                           },
+                          validator: ValidationService().contactValidator,
                           textAlign: TextAlign.center,
                           decoration: InputDecoration(
                               hintText: 'Phone Number',
@@ -188,10 +193,11 @@ class _CompleteProfileState extends State<CompleteProfile> {
                         height: 50,
                         margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
                         padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
-                        child: TextField(
+                        child: TextFormField(
                           onChanged: (value) {
-                            idnumber = value;
+                            user.idnumber = value;
                           },
+                          validator: ValidationService().IDValidator,
                           textAlign: TextAlign.center,
                           decoration: InputDecoration(
                               hintText: 'ID Number',
@@ -237,7 +243,7 @@ class _CompleteProfileState extends State<CompleteProfile> {
                         padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
                         child: TextField(
                           onChanged: (value) {
-                            licensenumber = value;
+                            user.licensenumber = value;
                           },
                           textAlign: TextAlign.center,
                           decoration: InputDecoration(
@@ -259,10 +265,10 @@ class _CompleteProfileState extends State<CompleteProfile> {
                   onPressed: () {
                     FirebaseFirestore.instance
                         .collection('CompleteProfile')
-                        .add({'name': name,
-                              'phone_number':phone_number,
-                               'idnumber': idnumber,
-                                'licensenumber':licensenumber,
+                        .add({'name': user.name,
+                              'phone_number':user.phone_number,
+                               'idnumber': user.idnumber,
+                                'licensenumber':user.licensenumber,
                     });
                   },
                 )

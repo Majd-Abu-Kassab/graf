@@ -6,13 +6,13 @@ class ValidationService {
       return 'Please enter a valid email';
     }
 
-    // String pattern = r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$';
-    // RegExp regExp = new RegExp(pattern);
-    //
-    // if (!regExp.hasMatch(value)) {
-    //   // print('here');
-    //   return 'Please enter a valid email';
-    // }
+    String pattern = r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$';
+    RegExp regExp =  RegExp(pattern);
+
+    if (!regExp.hasMatch(value)) {
+      // print('here');
+      return 'Please enter a valid email';
+    }
 
     return null;
   }
@@ -29,7 +29,7 @@ class ValidationService {
 
     String pattern =
         r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
-    RegExp regExp = new RegExp(pattern);
+    RegExp regExp =  RegExp(pattern);
 
     if (!regExp.hasMatch(value)) {
       return 'Please enter a valid password';
@@ -48,7 +48,7 @@ class ValidationService {
     RegExp regExp = new RegExp(pattern);
 
     if (!regExp.hasMatch(value)) {
-      return 'Please enter a valid blood group';
+      return 'Please enter a valid ID number';
     }
 
     return null;
@@ -59,9 +59,8 @@ class ValidationService {
       return 'Please enter a valid License Number';
     }
 
-    String pattern =
-        r'^(([A-Z]{2}[0-9]{2})( )|([A-Z]{2}-[0-9]{2}))((19|20)[0-9][0-9])[0-9]{7}$';
-    RegExp regExp = new RegExp(pattern);
+    String pattern = r'^[0-9]*$';
+    RegExp regExp =  RegExp(pattern);
 
     if (!regExp.hasMatch(value)) {
       return 'Please enter a valid License Number';
@@ -80,7 +79,7 @@ class ValidationService {
     }
 
     String pattern = r'^[0-9]*$';
-    RegExp regExp = new RegExp(pattern);
+    RegExp regExp = RegExp(pattern);
 
     if (!regExp.hasMatch(value)) {
       return 'Please enter a valid phone number';
@@ -95,7 +94,7 @@ class ValidationService {
     }
 
     String pattern = r"^[A-Za-z\s]{1,}[\.]{0,1}[A-Za-z\s]{0,}$";
-    RegExp regExp = new RegExp(pattern);
+    RegExp regExp =  RegExp(pattern);
 
     if (!regExp.hasMatch(value)) {
       return 'Please enter a valid name';

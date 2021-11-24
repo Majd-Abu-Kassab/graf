@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lottie_animation/screens/login.dart';
 import 'package:lottie_animation/screens/homescreen.dart';
+import 'package:lottie_animation/models/user.dart';
 
 import 'complete_profile.dart';
 
@@ -14,8 +15,8 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
   final _auth=FirebaseAuth.instance;
-  String email;
-  String password;
+  AppUser userinfo = AppUser();
+
 
   @override
   Widget build(BuildContext context) {
@@ -108,7 +109,7 @@ class _RegisterState extends State<Register> {
                         padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
                         child: TextField(
                           onChanged: (value) {
-                            email = value;
+                            userinfo.email = value;
                           },
                           textAlign: TextAlign.center,
                           decoration: InputDecoration(
@@ -157,7 +158,7 @@ class _RegisterState extends State<Register> {
                         child: TextField(
                           obscureText: true,
                           onChanged: (value) {
-                            password = value;
+                            userinfo.password = value;
                           },
                           textAlign: TextAlign.center,
                           decoration: InputDecoration(
@@ -180,7 +181,7 @@ class _RegisterState extends State<Register> {
                      try {
                        final newUser = await _auth
                            .createUserWithEmailAndPassword(
-                           email: email.trim(), password: password);
+                           email: userinfo.email.trim(), password: userinfo.password);
                        if (newUser != null){
                          Navigator.push(
                            context,
