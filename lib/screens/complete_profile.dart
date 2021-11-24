@@ -101,18 +101,21 @@ class _CompleteProfileState extends State<CompleteProfile> {
                         height: 50,
                         margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
                         padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
-                        child: TextField(
-                          onChanged: (value) {
-                            user.name = value;
-                          },
+                        child: Form(
+                          key:_formKey,
+                          child: TextFormField(
+                            onChanged: (value) {
+                              user.name = value;
+                            },
 
-                          textAlign: TextAlign.center,
-                          decoration: InputDecoration(
-                              hintText: 'Name',
-                              focusedBorder: InputBorder.none,
-                              border: InputBorder.none,
-                              hintStyle: TextStyle(color: Colors.white70)),
-                          style: TextStyle(fontSize: 16, color: Colors.white),
+                            textAlign: TextAlign.center,
+                            decoration: InputDecoration(
+                                hintText: 'Name',
+                                focusedBorder: InputBorder.none,
+                                border: InputBorder.none,
+                                hintStyle: TextStyle(color: Colors.white70)),
+                            style: TextStyle(fontSize: 16, color: Colors.white),
+                          ),
                         )),
                   ],
                 ),
@@ -199,18 +202,21 @@ class _CompleteProfileState extends State<CompleteProfile> {
                         height: 50,
                         margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
                         padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
-                        child: TextFormField(
-                          onChanged: (value) {
-                            user.idnumber = value;
-                          },
-                          validator: ValidationService().IDValidator,
-                          textAlign: TextAlign.center,
-                          decoration: InputDecoration(
-                              hintText: 'ID Number',
-                              focusedBorder: InputBorder.none,
-                              border: InputBorder.none,
-                              hintStyle: TextStyle(color: Colors.white70)),
-                          style: TextStyle(fontSize: 16, color: Colors.white),
+                        child: Form(
+                          key:_formKey,
+                          child: TextFormField(
+                            onChanged: (value) {
+                              user.idnumber = value;
+                            },
+                            validator: ValidationService().IDValidator,
+                            textAlign: TextAlign.center,
+                            decoration: InputDecoration(
+                                hintText: 'ID Number',
+                                focusedBorder: InputBorder.none,
+                                border: InputBorder.none,
+                                hintStyle: TextStyle(color: Colors.white70)),
+                            style: TextStyle(fontSize: 16, color: Colors.white),
+                          ),
                         )),
                   ],
                 ),
@@ -247,17 +253,21 @@ class _CompleteProfileState extends State<CompleteProfile> {
                         height: 50,
                         margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
                         padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
-                        child: TextField(
-                          onChanged: (value) {
-                            user.licensenumber = value;
-                          },
-                          textAlign: TextAlign.center,
-                          decoration: InputDecoration(
-                              hintText: 'License Number',
-                              focusedBorder: InputBorder.none,
-                              border: InputBorder.none,
-                              hintStyle: TextStyle(color: Colors.white70)),
-                          style: TextStyle(fontSize: 16, color: Colors.white),
+                        child: Form(
+                          key:_formKey,
+                          child: TextFormField(
+                            onChanged: (value) {
+                              user.licensenumber = value;
+                            },
+                            validator: ValidationService().licenseValidator,
+                            textAlign: TextAlign.center,
+                            decoration: InputDecoration(
+                                hintText: 'License Number',
+                                focusedBorder: InputBorder.none,
+                                border: InputBorder.none,
+                                hintStyle: TextStyle(color: Colors.white70)),
+                            style: TextStyle(fontSize: 16, color: Colors.white),
+                          ),
                         )),
                   ],
                 ),
