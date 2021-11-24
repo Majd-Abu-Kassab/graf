@@ -1,12 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie_animation/components/rounded_button.dart';
-import 'package:lottie_animation/models/user.dart';
-import 'package:lottie_animation/screens/homescreen.dart';
-import 'package:lottie_animation/services/firebase_services.dart';
-import 'package:lottie_animation/services/validation_services.dart';
-import 'package:lottie_animation/widgets/widgets.dart';
 
 class CompleteProfile extends StatefulWidget {
   @override

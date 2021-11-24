@@ -4,9 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'screens/accountscreen.dart';
 import 'package:lottie_animation/screens/accountscreen.dart';
-// import 'package:lottie_animation/screens/homescreen.dart';
-// import 'package:lottie_animation/screens/login.dart';
-// import 'package:lottie_animation/services/authentication_service.dart';
 import 'package:flutter/cupertino.dart';
 
   void main() async {
