@@ -1,4 +1,3 @@
-// @dart=2.9
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie_animation/components/rounded_button.dart';
@@ -30,84 +29,84 @@ class _CompleteProfileState extends State<CompleteProfile> {
     // SystemChrome.setSystemUIOverlayStyle(
     //     SystemUiOverlayStyle(statusBarColor: Colors.transparent));
 
-    return Scaffold(
-      body: Stack(
-        children: <Widget>[
-          Container(
-            height: double.infinity,
-            width: double.infinity,
-            decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.bottomCenter,
-                    end: Alignment.topCenter,
-                    colors: [
-                  Color(0xFF333652),
-                  Colors.black.withOpacity(.1),
-                ])),
-          ),
-          Padding(
-            padding: EdgeInsets.only(bottom: 60),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  'PARKKING',
-                  style: TextStyle(
-                    fontSize: 27.0,
-                    color: Colors.white,
+    return Form(
+      key:_formKey,
+      child: Scaffold(
+        body: Stack(
+          children: <Widget>[
+            Container(
+              height: double.infinity,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.bottomCenter,
+                      end: Alignment.topCenter,
+                      colors: [
+                    Color(0xFF333652),
+                    Colors.black.withOpacity(.1),
+                  ])),
+            ),
+            Padding(
+              padding: EdgeInsets.only(bottom: 60),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    'PARKKING',
+                    style: TextStyle(
+                      fontSize: 27.0,
+                      color: Colors.white,
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height: 4,
-                ),
-                Text(
-                  //TODO update this
-                  'Complete your Profile',
-                  style: TextStyle(
-                    fontSize: 16.0,
-                    color: Colors.white,
+                  SizedBox(
+                    height: 4,
                   ),
-                ),
-                SizedBox(
-                  height: 16,
-                ),
-                Stack(
-                  children: <Widget>[
-                    Container(
-                        width: double.infinity,
-                        margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
-                        padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                        height: 50,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.white),
-                            borderRadius: BorderRadius.circular(50)),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                            Container(
-                              margin: EdgeInsets.only(left: 20),
-                              height: 22,
-                              width: 22,
-                              child: Icon(
-                                Icons.account_box,
-                                color: Colors.white,
-                                size: 20,
+                  Text(
+                    //TODO update this
+                    'Complete your Profile',
+                    style: TextStyle(
+                      fontSize: 16.0,
+                      color: Colors.white,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 16,
+                  ),
+                  Stack(
+                    children: <Widget>[
+                      Container(
+                          width: double.infinity,
+                          margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                          padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                          height: 50,
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.white),
+                              borderRadius: BorderRadius.circular(50)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Container(
+                                margin: EdgeInsets.only(left: 20),
+                                height: 22,
+                                width: 22,
+                                child: Icon(
+                                  Icons.account_box,
+                                  color: Colors.white,
+                                  size: 20,
+                                ),
                               ),
-                            ),
-                          ],
-                        )),
-                    Container(
-                        height: 50,
-                        margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
-                        padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
-                        child: Form(
-                          key:_formKey,
+                            ],
+                          )),
+                      Container(
+                          height: 50,
+                          margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                          padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
                           child: TextFormField(
                             onChanged: (value) {
                               user.name = value;
                             },
-
+                            validator: ValidationService().nameValidator,
                             textAlign: TextAlign.center,
                             decoration: InputDecoration(
                                 hintText: 'Name',
@@ -115,95 +114,90 @@ class _CompleteProfileState extends State<CompleteProfile> {
                                 border: InputBorder.none,
                                 hintStyle: TextStyle(color: Colors.white70)),
                             style: TextStyle(fontSize: 16, color: Colors.white),
-                          ),
-                        )),
-                  ],
-                ),
-                SizedBox(
-                  height: 16,
-                ),
-                Stack(
-                  children: <Widget>[
-                    Container(
-                        width: double.infinity,
-                        margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
-                        padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                        height: 50,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.white),
-                            borderRadius: BorderRadius.circular(50)),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                            Container(
-                              margin: EdgeInsets.only(left: 20),
-                              height: 22,
-                              width: 22,
-                              child: Icon(
-                                Icons.phone_android,
-                                color: Colors.white,
-                                size: 20,
+                          )),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 16,
+                  ),
+                  Stack(
+                    children: <Widget>[
+                      Container(
+                          width: double.infinity,
+                          margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                          padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                          height: 50,
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.white),
+                              borderRadius: BorderRadius.circular(50)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Container(
+                                margin: EdgeInsets.only(left: 20),
+                                height: 22,
+                                width: 22,
+                                child: Icon(
+                                  Icons.phone_android,
+                                  color: Colors.white,
+                                  size: 20,
+                                ),
                               ),
-                            ),
-                          ],
-                        )),
-                    Container(
-                        height: 50,
-                        margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
-                        padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
-                        child: Form(
-                            key: _formKey,
+                            ],
+                          )),
+                      Container(
+                          height: 50,
+                          margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                          padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
                           child: TextFormField(
-                            onChanged: (value) {
-                              user.phone_number = value;
-                            },
-                            validator: ValidationService().contactValidator,
-                            textAlign: TextAlign.center,
-                            decoration: InputDecoration(
-                                hintText: 'Phone Number',
-                                focusedBorder: InputBorder.none,
-                                border: InputBorder.none,
-                                hintStyle: TextStyle(color: Colors.white70)),
-                            style: TextStyle(fontSize: 16, color: Colors.white),
-                          ),
-                        )),
-                  ],
-                ),
-                // national id number
-                SizedBox(
-                  height: 16,
-                ),
-                Stack(
-                  children: <Widget>[
-                    Container(
-                        width: double.infinity,
-                        margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
-                        padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                        height: 50,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.white),
-                            borderRadius: BorderRadius.circular(50)),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                            Container(
-                              margin: EdgeInsets.only(left: 20),
-                              height: 22,
-                              width: 22,
-                              child: Icon(
-                                Icons.account_box,
-                                color: Colors.white,
-                                size: 20,
-                              ),
+                              onChanged: (value) {
+                                user.phone_number = value;
+                              },
+                              validator: ValidationService().contactValidator,
+                              textAlign: TextAlign.center,
+                              decoration: InputDecoration(
+                                  hintText: 'Phone Number',
+                                  focusedBorder: InputBorder.none,
+                                  border: InputBorder.none,
+                                  hintStyle: TextStyle(color: Colors.white70)),
+                              style: TextStyle(fontSize: 16, color: Colors.white),
                             ),
-                          ],
-                        )),
-                    Container(
-                        height: 50,
-                        margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
-                        padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
-                        child: Form(
-                          key:_formKey,
+                          ),
+                    ],
+                  ),
+                  // national id number
+                  SizedBox(
+                    height: 16,
+                  ),
+                  Stack(
+                    children: <Widget>[
+                      Container(
+                          width: double.infinity,
+                          margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                          padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                          height: 50,
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.white),
+                              borderRadius: BorderRadius.circular(50)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Container(
+                                margin: EdgeInsets.only(left: 20),
+                                height: 22,
+                                width: 22,
+                                child: Icon(
+                                  Icons.account_box,
+                                  color: Colors.white,
+                                  size: 20,
+                                ),
+                              ),
+                            ],
+                          )),
+                      Container(
+                          height: 50,
+                          margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                          padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
                           child: TextFormField(
                             onChanged: (value) {
                               user.idnumber = value;
@@ -216,45 +210,42 @@ class _CompleteProfileState extends State<CompleteProfile> {
                                 border: InputBorder.none,
                                 hintStyle: TextStyle(color: Colors.white70)),
                             style: TextStyle(fontSize: 16, color: Colors.white),
-                          ),
-                        )),
-                  ],
-                ),
-                // national id number
-                SizedBox(
-                  height: 16,
-                ),
-                Stack(
-                  children: <Widget>[
-                    Container(
-                        width: double.infinity,
-                        margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
-                        padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                        height: 50,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.white),
-                            borderRadius: BorderRadius.circular(50)),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                            Container(
-                              margin: EdgeInsets.only(left: 20),
-                              height: 22,
-                              width: 22,
-                              child: Icon(
-                                Icons.account_box,
-                                color: Colors.white,
-                                size: 20,
+                          )),
+                    ],
+                  ),
+                  // national id number
+                  SizedBox(
+                    height: 16,
+                  ),
+                  Stack(
+                    children: <Widget>[
+                      Container(
+                          width: double.infinity,
+                          margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                          padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                          height: 50,
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.white),
+                              borderRadius: BorderRadius.circular(50)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Container(
+                                margin: EdgeInsets.only(left: 20),
+                                height: 22,
+                                width: 22,
+                                child: Icon(
+                                  Icons.account_box,
+                                  color: Colors.white,
+                                  size: 20,
+                                ),
                               ),
-                            ),
-                          ],
-                        )),
-                    Container(
-                        height: 50,
-                        margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
-                        padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
-                        child: Form(
-                          key:_formKey,
+                            ],
+                          )),
+                      Container(
+                          height: 50,
+                          margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                          padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
                           child: TextFormField(
                             onChanged: (value) {
                               user.licensenumber = value;
@@ -267,34 +258,34 @@ class _CompleteProfileState extends State<CompleteProfile> {
                                 border: InputBorder.none,
                                 hintStyle: TextStyle(color: Colors.white70)),
                             style: TextStyle(fontSize: 16, color: Colors.white),
-                          ),
-                        )),
-                  ],
-                ),
-                // national id number
-                SizedBox(
-                  height: 16,
-                ),
-                RoundedButton(
-                  title: 'Save',
-                  colour: Colors.blueAccent,
-                  onPressed: () {
-                    if (_formKey.currentState.validate()) {
-                      FirebaseFirestore.instance
-                          .collection('CompleteProfile')
-                          .add({'name': user.name,
-                        'phone_number':user.phone_number,
-                        'idnumber': user.idnumber,
-                        'licensenumber':user.licensenumber,
-                      });
-                    }
+                          )),
+                    ],
+                  ),
+                  // national id number
+                  SizedBox(
+                    height: 16,
+                  ),
+                  RoundedButton(
+                    title: 'Save',
+                    colour: Colors.blueAccent,
+                    onPressed: () {
+                      if (_formKey.currentState.validate()) {
+                        FirebaseFirestore.instance
+                            .collection('CompleteProfile')
+                            .add({'name': user.name,
+                          'phone_number':user.phone_number,
+                          'idnumber': user.idnumber,
+                          'licensenumber':user.licensenumber,
+                        });
+                      }
 
-                  },
-                )
-              ],
+                    },
+                  )
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
