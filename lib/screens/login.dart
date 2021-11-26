@@ -188,7 +188,7 @@ class _LoginState extends State<Login> {
                                 titleTextStyle: TextStyle(
                                   color: Colors.white,
                                 ),
-                                content: Text("User doesn't exist"),
+                                content: Text("User doesn't exist!"),
                                 contentTextStyle: TextStyle(
                                   color: Colors.white,
                                 ),
