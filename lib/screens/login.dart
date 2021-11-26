@@ -4,9 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:lottie_animation/screens/register.dart';
 import 'package:lottie_animation/components/rounded_button.dart';
 import 'package:lottie_animation/services/validation_services.dart';
-import'homescreen.dart';
+import 'homescreen.dart';
 import 'package:lottie_animation/models/user.dart';
-
 
 class Login extends StatefulWidget {
   @override
@@ -14,15 +13,13 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  final _auth= FirebaseAuth.instance;
+  final _auth = FirebaseAuth.instance;
   final _formKey = GlobalKey<FormState>();
 
   AppUser userinfo = AppUser();
 
-
   @override
   Widget build(BuildContext context) {
-
     //test feild state
 
     //for showing loading
@@ -32,7 +29,7 @@ class _LoginState extends State<Login> {
         SystemUiOverlayStyle(statusBarColor: Colors.transparent));
 
     return Form(
-      key:_formKey,
+      key: _formKey,
       child: Scaffold(
         body: Stack(
           children: <Widget>[
@@ -49,9 +46,9 @@ class _LoginState extends State<Login> {
                       begin: Alignment.bottomCenter,
                       end: Alignment.topCenter,
                       colors: [
-                        Color(0xFF333652),
-                        Colors.black.withOpacity(.1),
-                      ])),
+                    Color(0xFF333652),
+                    Colors.black.withOpacity(.1),
+                  ])),
             ),
             Padding(
               padding: EdgeInsets.only(bottom: 60),
@@ -110,8 +107,8 @@ class _LoginState extends State<Login> {
                           margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
                           padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
                           child: TextFormField(
-                            onChanged: (value){
-                              userinfo.email=value;
+                            autovalidateMode: AutovalidateMode.onUserInteraction,onChanged: (value) {
+                              userinfo.email = value;
                             },
                             validator: ValidationService().emailValidator,
                             textAlign: TextAlign.center,
@@ -119,12 +116,8 @@ class _LoginState extends State<Login> {
                                 hintText: 'Email',
                                 focusedBorder: InputBorder.none,
                                 border: InputBorder.none,
-                                hintStyle: TextStyle(
-                                    color: Colors.white70
-                                )
-                            ),
-                            style: TextStyle(fontSize: 16,
-                                color: Colors.white),
+                                hintStyle: TextStyle(color: Colors.white70)),
+                            style: TextStyle(fontSize: 16, color: Colors.white),
                           )),
                     ],
                   ),
@@ -161,8 +154,9 @@ class _LoginState extends State<Login> {
                           margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
                           padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
                           child: TextFormField(
-                            onChanged: (value){
-                              userinfo.password=value;
+                            obscureText: true,
+                            onChanged: (value) {
+                              userinfo.password = value;
                             },
                             validator: ValidationService().passwordValidator,
                             textAlign: TextAlign.center,
@@ -170,44 +164,66 @@ class _LoginState extends State<Login> {
                               hintText: 'Password',
                               focusedBorder: InputBorder.none,
                               border: InputBorder.none,
-                              hintStyle: TextStyle(
-                                  color: Colors.white70
-                              ),
+                              hintStyle: TextStyle(color: Colors.white70),
                             ),
-                            style: TextStyle(fontSize: 16,
-                                color: Colors.white),
+                            style: TextStyle(fontSize: 16, color: Colors.white),
                           )),
                     ],
                   ),
                   SizedBox(
                     height: 10,
                   ),
-                 RoundedButton(
-                   title: 'Login',
-                   colour: Colors.blueAccent,
-                   onPressed: (){
-                     final user=_auth.signInWithEmailAndPassword(email:userinfo.email, password: userinfo.password);
-                     if (user!=null){
-                       Navigator.push(context,MaterialPageRoute(builder: (context) => Homescreen()),);
-                     }
-                   },
-                 ),
+                  RoundedButton(
+                    title: 'Login',
+                    colour: Colors.blueAccent,
+                    onPressed: ()async {
+                      final user =  await _auth.signInWithEmailAndPassword(
+                          email: userinfo.email, password: userinfo.password).catchError((err) {
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                backgroundColor:Color(0xFF333652) ,
+                                title: Text("Error"),
+                                titleTextStyle: TextStyle(
+                                  color: Colors.white,
+                                ),
+                                content: Text("User doesn't exist"),
+                                contentTextStyle: TextStyle(
+                                  color: Colors.white,
+                                ),
+                                actions: [
+                                  TextButton(
+                                    child: Text("Ok"),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                  )
+                                ],
+                              );
+                            });
+                      });
+                      if (user != null) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Homescreen()),
+                        );
+                      }
+                    },
+                  ),
                   SizedBox(
                     height: 10,
                   ),
                   Container(
                     height: 50,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50)
-                    ),
+                    decoration:
+                        BoxDecoration(borderRadius: BorderRadius.circular(50)),
                     margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
                     child: Center(
                         child: Text(
-                          "Don't have an account?",
-                          style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.white),
-                        )),
+                      "Don't have an account?",
+                      style: TextStyle(fontSize: 16, color: Colors.white),
+                    )),
                   ),
                   InkWell(
                     onTap: () {
@@ -219,17 +235,16 @@ class _LoginState extends State<Login> {
                     child: Container(
                       height: 30,
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50)
-                      ),
+                          borderRadius: BorderRadius.circular(50)),
                       margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
                       child: Center(
                           child: Text(
-                            "Create account",
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold),
-                          )),
+                        "Create account",
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold),
+                      )),
                     ),
                   ),
                 ],
