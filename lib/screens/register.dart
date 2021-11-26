@@ -109,11 +109,11 @@ class _RegisterState extends State<Register> {
                             ],
                           )),
                       Container(
-                          height: 50,
+                          height: 70,
                           margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
                           padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
                           child: TextFormField(
-                            onChanged: (value) {
+                            autovalidateMode: AutovalidateMode.onUserInteraction, onChanged: (value) {
                               userinfo.email = value;
                             },
                             validator: ValidationService().emailValidator,
@@ -158,12 +158,12 @@ class _RegisterState extends State<Register> {
                             ],
                           )),
                       Container(
-                          height: 50,
+                          height: 70,
                           margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
                           padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
                           child: TextFormField(
                             obscureText: true,
-                            onChanged: (value) {
+                              autovalidateMode: AutovalidateMode.onUserInteraction,onChanged: (value) {
                               userinfo.password = value;
                             },
                             validator: ValidationService().passwordValidator,

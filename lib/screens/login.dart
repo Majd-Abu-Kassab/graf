@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lottie_animation/screens/register.dart';
 import 'package:lottie_animation/components/rounded_button.dart';
+import 'package:lottie_animation/services/validation_services.dart';
 import'homescreen.dart';
 import 'package:lottie_animation/models/user.dart';
 
@@ -14,6 +15,8 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   final _auth= FirebaseAuth.instance;
+  final _formKey = GlobalKey<FormState>();
+
   AppUser userinfo = AppUser();
 
 
@@ -28,207 +31,212 @@ class _LoginState extends State<Login> {
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: Colors.transparent));
 
-    return Scaffold(
-      body: Stack(
-        children: <Widget>[
-          Image.asset(
-            //TODO update this
-            'assets/car1.gif',
-            fit: BoxFit.fill,
-            height: double.infinity,
-            width: double.infinity,
-          ),
-          Container(
-            decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.bottomCenter,
-                    end: Alignment.topCenter,
-                    colors: [
-                      Color(0xFF333652),
-                      Colors.black.withOpacity(.1),
-                    ])),
-          ),
-          Padding(
-            padding: EdgeInsets.only(bottom: 60),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  'Welcome',
-                  style: TextStyle(
-                    fontSize: 27.0,
-                    color: Colors.white,
+    return Form(
+      key:_formKey,
+      child: Scaffold(
+        body: Stack(
+          children: <Widget>[
+            Image.asset(
+              //TODO update this
+              'assets/car1.gif',
+              fit: BoxFit.fill,
+              height: double.infinity,
+              width: double.infinity,
+            ),
+            Container(
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.bottomCenter,
+                      end: Alignment.topCenter,
+                      colors: [
+                        Color(0xFF333652),
+                        Colors.black.withOpacity(.1),
+                      ])),
+            ),
+            Padding(
+              padding: EdgeInsets.only(bottom: 60),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    'Welcome',
+                    style: TextStyle(
+                      fontSize: 27.0,
+                      color: Colors.white,
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height: 4,
-                ),
-                Text(
-                  //TODO update this
-                  'Join PARK KING!',
-                  style: TextStyle(
-                    fontSize: 16.0,
-                    color: Colors.white,
+                  SizedBox(
+                    height: 4,
                   ),
-                ),
-                SizedBox(
-                  height: 16,
-                ),
-                Stack(
-                  children: <Widget>[
-                    Container(
-                        width: double.infinity,
-                        margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
-                        padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                        height: 50,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.white),
-                            borderRadius: BorderRadius.circular(50)),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                            Container(
-                              margin: EdgeInsets.only(left: 20),
-                              height: 22,
-                              width: 22,
-                              child: Icon(
-                                Icons.email,
-                                color: Colors.white,
-                                size: 20,
+                  Text(
+                    //TODO update this
+                    'Join PARK KING!',
+                    style: TextStyle(
+                      fontSize: 16.0,
+                      color: Colors.white,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 16,
+                  ),
+                  Stack(
+                    children: <Widget>[
+                      Container(
+                          width: double.infinity,
+                          margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                          padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                          height: 50,
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.white),
+                              borderRadius: BorderRadius.circular(50)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Container(
+                                margin: EdgeInsets.only(left: 20),
+                                height: 22,
+                                width: 22,
+                                child: Icon(
+                                  Icons.email,
+                                  color: Colors.white,
+                                  size: 20,
+                                ),
                               ),
+                            ],
+                          )),
+                      Container(
+                          height: 50,
+                          margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                          padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
+                          child: TextFormField(
+                            onChanged: (value){
+                              userinfo.email=value;
+                            },
+                            validator: ValidationService().emailValidator,
+                            textAlign: TextAlign.center,
+                            decoration: InputDecoration(
+                                hintText: 'Email',
+                                focusedBorder: InputBorder.none,
+                                border: InputBorder.none,
+                                hintStyle: TextStyle(
+                                    color: Colors.white70
+                                )
                             ),
-                          ],
-                        )),
-                    Container(
-                        height: 50,
-                        margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
-                        padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
-                        child: TextField(
-                          onChanged: (value){
-                            userinfo.email=value;
-                          },
-                          textAlign: TextAlign.center,
-                          decoration: InputDecoration(
-                              hintText: 'Email',
+                            style: TextStyle(fontSize: 16,
+                                color: Colors.white),
+                          )),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 16,
+                  ),
+                  Stack(
+                    children: <Widget>[
+                      Container(
+                          width: double.infinity,
+                          margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                          padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                          height: 50,
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.white),
+                              borderRadius: BorderRadius.circular(50)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Container(
+                                margin: EdgeInsets.only(left: 20),
+                                height: 22,
+                                width: 22,
+                                child: Icon(
+                                  Icons.vpn_key,
+                                  color: Colors.white,
+                                  size: 20,
+                                ),
+                              ),
+                            ],
+                          )),
+                      Container(
+                          height: 50,
+                          margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                          padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
+                          child: TextFormField(
+                            onChanged: (value){
+                              userinfo.password=value;
+                            },
+                            validator: ValidationService().passwordValidator,
+                            textAlign: TextAlign.center,
+                            decoration: InputDecoration(
+                              hintText: 'Password',
                               focusedBorder: InputBorder.none,
                               border: InputBorder.none,
                               hintStyle: TextStyle(
                                   color: Colors.white70
-                              )
-                          ),
-                          style: TextStyle(fontSize: 16,
-                              color: Colors.white),
-                        )),
-                  ],
-                ),
-                SizedBox(
-                  height: 16,
-                ),
-                Stack(
-                  children: <Widget>[
-                    Container(
-                        width: double.infinity,
-                        margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
-                        padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                        height: 50,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.white),
-                            borderRadius: BorderRadius.circular(50)),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                            Container(
-                              margin: EdgeInsets.only(left: 20),
-                              height: 22,
-                              width: 22,
-                              child: Icon(
-                                Icons.vpn_key,
-                                color: Colors.white,
-                                size: 20,
                               ),
                             ),
-                          ],
-                        )),
-                    Container(
-                        height: 50,
-                        margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
-                        padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
-                        child: TextField(
-                          onChanged: (value){
-                            userinfo.password=value;
-                          },
-                          textAlign: TextAlign.center,
-                          decoration: InputDecoration(
-                            hintText: 'Password',
-                            focusedBorder: InputBorder.none,
-                            border: InputBorder.none,
-                            hintStyle: TextStyle(
-                                color: Colors.white70
-                            ),
-                          ),
-                          style: TextStyle(fontSize: 16,
-                              color: Colors.white),
-                        )),
-                  ],
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-               RoundedButton(
-                 title: 'Login',
-                 colour: Colors.blueAccent,
-                 onPressed: (){
-                   final user=_auth.signInWithEmailAndPassword(email:userinfo.email, password: userinfo.password);
-                   if (user!=null){
-                     Navigator.push(context,MaterialPageRoute(builder: (context) => Homescreen()),);
-                   }
-                 },
-               ),
-                SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  height: 50,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50)
+                            style: TextStyle(fontSize: 16,
+                                color: Colors.white),
+                          )),
+                    ],
                   ),
-                  margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
-                  child: Center(
-                      child: Text(
-                        "Don't have an account?",
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.white),
-                      )),
-                ),
-                InkWell(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => Register()),
-                    );
-                  },
-                  child: Container(
-                    height: 30,
+                  SizedBox(
+                    height: 10,
+                  ),
+                 RoundedButton(
+                   title: 'Login',
+                   colour: Colors.blueAccent,
+                   onPressed: (){
+                     final user=_auth.signInWithEmailAndPassword(email:userinfo.email, password: userinfo.password);
+                     if (user!=null){
+                       Navigator.push(context,MaterialPageRoute(builder: (context) => Homescreen()),);
+                     }
+                   },
+                 ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    height: 50,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(50)
                     ),
                     margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
                     child: Center(
                         child: Text(
-                          "Create account",
+                          "Don't have an account?",
                           style: TextStyle(
                               fontSize: 16,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold),
+                              color: Colors.white),
                         )),
                   ),
-                ),
-              ],
-            ),
-          )
-        ],
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Register()),
+                      );
+                    },
+                    child: Container(
+                      height: 30,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50)
+                      ),
+                      margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                      child: Center(
+                          child: Text(
+                            "Create account",
+                            style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
+                          )),
+                    ),
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
