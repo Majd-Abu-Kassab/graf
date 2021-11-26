@@ -71,7 +71,7 @@ class _CompleteProfileState extends State<CompleteProfile> {
                     ),
                   ),
                   SizedBox(
-                    height: 16,
+                    height: 20,
                   ),
                   Stack(
                     children: <Widget>[
@@ -99,7 +99,7 @@ class _CompleteProfileState extends State<CompleteProfile> {
                             ],
                           )),
                       Container(
-                          height: 50,
+                          height: 70,
                           margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
                           padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
                           child: TextFormField(
@@ -118,7 +118,7 @@ class _CompleteProfileState extends State<CompleteProfile> {
                     ],
                   ),
                   SizedBox(
-                    height: 16,
+                    height: 20,
                   ),
                   Stack(
                     children: <Widget>[
@@ -146,7 +146,7 @@ class _CompleteProfileState extends State<CompleteProfile> {
                             ],
                           )),
                       Container(
-                          height: 50,
+                          height: 70,
                           margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
                           padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
                           child: TextFormField(
@@ -167,7 +167,7 @@ class _CompleteProfileState extends State<CompleteProfile> {
                   ),
                   // national id number
                   SizedBox(
-                    height: 16,
+                    height: 20,
                   ),
                   Stack(
                     children: <Widget>[
@@ -195,7 +195,7 @@ class _CompleteProfileState extends State<CompleteProfile> {
                             ],
                           )),
                       Container(
-                          height: 50,
+                          height: 70,
                           margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
                           padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
                           child: TextFormField(
@@ -215,7 +215,7 @@ class _CompleteProfileState extends State<CompleteProfile> {
                   ),
                   // national id number
                   SizedBox(
-                    height: 16,
+                    height: 20,
                   ),
                   Stack(
                     children: <Widget>[
@@ -243,7 +243,7 @@ class _CompleteProfileState extends State<CompleteProfile> {
                             ],
                           )),
                       Container(
-                          height: 50,
+                          height: 70,
                           margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
                           padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
                           child: TextFormField(
@@ -263,7 +263,7 @@ class _CompleteProfileState extends State<CompleteProfile> {
                   ),
                   // national id number
                   SizedBox(
-                    height: 16,
+                    height: 20,
                   ),
                   RoundedButton(
                     title: 'Save',
