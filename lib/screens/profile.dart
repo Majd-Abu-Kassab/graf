@@ -10,7 +10,7 @@ class Profile extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        home:  Stack(
+        home: Stack(
           children: <Widget>[
             GoogleMap(
               mapType: MapType.normal,
@@ -21,7 +21,7 @@ class Profile extends StatelessWidget {
             ),
             // align it to the bottom center, you can try different options too (e.g topLeft,centerLeft)
             Align(
-              alignment: Alignment.bottomRight,
+              alignment: Alignment.topLeft,
               // add your floating action button
               child: FloatingActionButton(
                 onPressed: () {},

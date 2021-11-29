@@ -56,6 +56,14 @@ class _MapScreenState extends State<MapScreen> {
               onMapCreated: _onMapCreated,
               myLocationEnabled: true,
             ),
+            Align(
+              alignment: Alignment.topLeft,
+              // add your floating action button
+              child: FloatingActionButton(
+                onPressed: () {},
+                child: Icon(Icons.menu),
+              ),
+            ),
           ],
         ),
       ),
