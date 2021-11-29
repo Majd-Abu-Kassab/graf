@@ -45,6 +45,10 @@ class _MapScreenState extends State<MapScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar:AppBar(
+        title: const Text('PARKKING MAP'),
+      ) ,
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
@@ -56,12 +60,17 @@ class _MapScreenState extends State<MapScreen> {
               onMapCreated: _onMapCreated,
               myLocationEnabled: true,
             ),
-            Align(
-              alignment: Alignment.topLeft,
-              // add your floating action button
-              child: FloatingActionButton(
-                onPressed: () {},
-                child: Icon(Icons.menu),
+            SafeArea(
+              child: Align(
+                alignment: Alignment.topLeft,
+                // add your floating action button
+                child: Padding(
+                  padding: EdgeInsets.fromLTRB(15.0,50.0,0.0,0.0),
+                  child: FloatingActionButton(
+                    onPressed: () {},
+                    child: Icon(Icons.menu),
+                  ),
+                ),
               ),
             ),
           ],
