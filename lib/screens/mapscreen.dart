@@ -59,7 +59,7 @@ class _MapScreenState extends State<MapScreen> {
               mapType: MapType.normal,
               onMapCreated: _onMapCreated,
               myLocationEnabled: true,
-              padding: EdgeInsets.only(top: 110.0,),
+              padding: EdgeInsets.only(top: 700.0,),
             ),
             SafeArea(
               child: Align(
