@@ -1,4 +1,3 @@
-//homescreen that include one button for renting a car
 import 'package:flutter/material.dart';
 import 'package:lottie_animation/screens/signinorregister.dart';
 

@@ -103,7 +103,7 @@ class _LoginState extends State<Login> {
                             ],
                           )),
                       Container(
-                          height: 50,
+                          height: 70,
                           margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
                           padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
                           child: TextFormField(
@@ -150,7 +150,7 @@ class _LoginState extends State<Login> {
                             ],
                           )),
                       Container(
-                          height: 50,
+                          height: 70,
                           margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
                           padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
                           child: TextFormField(
