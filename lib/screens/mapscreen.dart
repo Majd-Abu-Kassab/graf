@@ -59,13 +59,14 @@ class _MapScreenState extends State<MapScreen> {
               mapType: MapType.normal,
               onMapCreated: _onMapCreated,
               myLocationEnabled: true,
+              padding: EdgeInsets.only(top: 110.0,),
             ),
             SafeArea(
               child: Align(
                 alignment: Alignment.topLeft,
                 // add your floating action button
                 child: Padding(
-                  padding: EdgeInsets.fromLTRB(15.0,50.0,0.0,0.0),
+                  padding: EdgeInsets.fromLTRB(10.0,25.0,0.0,0.0),
                   child: FloatingActionButton(
                     onPressed: () {},
                     child: Icon(Icons.menu),
