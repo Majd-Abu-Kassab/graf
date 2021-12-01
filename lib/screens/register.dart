@@ -183,7 +183,7 @@ class _RegisterState extends State<Register> {
                   ),
                   RoundedButton(
                       title: 'Register',
-                      colour: Colors.blueAccent,
+                      colour: Color(0xFFFAD02C),
                       onPressed: ()async {
                        try {
                          final newUser = await _auth

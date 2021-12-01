@@ -175,7 +175,7 @@ class _LoginState extends State<Login> {
                   ),
                   RoundedButton(
                     title: 'Login',
-                    colour: Colors.blueAccent,
+                    colour: Color(0xFFFAD02C),
                     onPressed: ()async {
                       final user =  await _auth.signInWithEmailAndPassword(
                           email: userinfo.email, password: userinfo.password).catchError((err) {

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 
+import 'menu.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -45,9 +47,14 @@ class _MapScreenState extends State<MapScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: NavDrawer(),
       extendBodyBehindAppBar: true,
       appBar:AppBar(
-        title: const Text('PARKKING MAP'),
+        backgroundColor: Color(0xFF90ADC6),
+        title: Align(
+            alignment: Alignment(-0.4, 0.0,),
+            child: const Text('PARKKING MAP'),
+        ),
       ) ,
       body: Container(
         height: MediaQuery.of(context).size.height,
@@ -60,19 +67,6 @@ class _MapScreenState extends State<MapScreen> {
               onMapCreated: _onMapCreated,
               myLocationEnabled: true,
               padding: EdgeInsets.only(top: 700.0,),
-            ),
-            SafeArea(
-              child: Align(
-                alignment: Alignment.topLeft,
-                // add your floating action button
-                child: Padding(
-                  padding: EdgeInsets.fromLTRB(10.0,25.0,0.0,0.0),
-                  child: FloatingActionButton(
-                    onPressed: () {},
-                    child: Icon(Icons.menu),
-                  ),
-                ),
-              ),
             ),
           ],
         ),

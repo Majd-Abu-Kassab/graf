@@ -44,10 +44,24 @@ class _HomescreenState extends State<Homescreen> {
         home: Button1());
   }
 }
+
+
+// extendBodyBehindAppBar: true,
+// appBar:AppBar(
+// title: const Text('PARKKING MAP'),
 class Button1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+          backgroundColor: Color(0xFF90ADC6),
+        title: Align(
+            alignment: Alignment.center,
+          child: const Text('PARKKING'),
+        ),
+
+      ),
       backgroundColor: Color(0xFF333652),
       body: SafeArea(
         child: Center(
