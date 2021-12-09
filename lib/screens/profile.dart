@@ -47,6 +47,8 @@ class _ProfileState extends State<Profile> {
       body: StreamBuilder (
         stream: FirebaseFirestore.instance
             .collection('CompleteProfile')
+            .orderBy('timestamp')
+            .limitToLast(2)
             .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (!snapshot.hasData) {
@@ -54,13 +56,16 @@ class _ProfileState extends State<Profile> {
               child: CircularProgressIndicator(),
             );
           }
-          return ListView(
-            children: snapshot.data.docs.map((document) {
+          return ListView.builder(
+              itemCount: snapshot.data.docs.length,
+              itemBuilder: (context,index){
+                DocumentSnapshot info = snapshot.data.docs[index];
+
               return SafeArea(
                 child: Column(
                   children: <Widget>[
                     Text(
-                      document["name"] ?? "",
+                      info["name"] ?? "",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 75.0,
@@ -118,7 +123,7 @@ class _ProfileState extends State<Profile> {
                                 Align(
                                   alignment: Alignment(-0.5, 0.0),
                                   child: Text(
-                                    document["phone_number"] ?? "",
+                                    info["phone_number"] ?? "",
                                     style: TextStyle(
                                       fontWeight: FontWeight.w300,
                                       fontSize: 30.0,
@@ -169,7 +174,7 @@ class _ProfileState extends State<Profile> {
                             Align(
                               alignment: Alignment(-0.8, 0.0),
                               child: Text(
-                                document["idnumber"] ?? "",
+                                info["idnumber"] ?? "",
                                 style: TextStyle(
                                   fontWeight: FontWeight.w300,
                                   fontSize: 30.0,
@@ -214,7 +219,7 @@ class _ProfileState extends State<Profile> {
                             Align(
                               alignment: Alignment(-0.8, 0.0),
                               child: Text(
-                                document["licensenumber"] ?? "",
+                                info["licensenumber"] ?? "",
                                 style: TextStyle(
                                   fontWeight: FontWeight.w300,
                                   fontSize: 30.0,
@@ -231,8 +236,8 @@ class _ProfileState extends State<Profile> {
                   ],
                 ),
               );
-            }).toList(),
-          );
+
+            });
         },
       ),
     );
