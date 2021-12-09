@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie_animation/services/validation_services.dart';
@@ -26,9 +27,12 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  final FirebaseAuth auth = FirebaseAuth.instance;
   AppUser user = AppUser();
   @override
   Widget build(BuildContext context) {
+    final User user = auth.currentUser;
+    final uid = user.uid;
     return Scaffold(
       backgroundColor: Color(0xFFE9EAEC),
       appBar: AppBar(
@@ -40,13 +44,9 @@ class _ProfileState extends State<Profile> {
             ),
             child: Text("KingProfile")),
       ),
-      body: StreamBuilder(
+      body: StreamBuilder (
         stream: FirebaseFirestore.instance
             .collection('CompleteProfile')
-            .where('name',isEqualTo: user.name)
-            .where('idnumber',isEqualTo: user.idnumber)
-            .where('licensenumber',isEqualTo: user.licensenumber)
-            .where('phonenumber',isEqualTo: user.phone_number)
             .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (!snapshot.hasData) {
