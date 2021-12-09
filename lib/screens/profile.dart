@@ -30,6 +30,7 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFE9EAEC),
       appBar: AppBar(
         backgroundColor: Color(0xFF90ADC6),
         title: Align(
@@ -42,6 +43,10 @@ class _ProfileState extends State<Profile> {
       body: StreamBuilder(
         stream: FirebaseFirestore.instance
             .collection('CompleteProfile')
+            .where('name',isEqualTo: user.name)
+            .where('idnumber',isEqualTo: user.idnumber)
+            .where('licensenumber',isEqualTo: user.licensenumber)
+            .where('phonenumber',isEqualTo: user.phone_number)
             .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (!snapshot.hasData) {
@@ -51,101 +56,180 @@ class _ProfileState extends State<Profile> {
           }
           return ListView(
             children: snapshot.data.docs.map((document) {
-              return Column(
-                children: <Widget>[
-                  Text(
-                    document["name"] ?? "",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 75.0,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 50.0,
-                  ),
-                  Align(
-                    alignment: Alignment(-0.9, 0.0),
-                    child: Text(
-                      'Your Account',
+              return SafeArea(
+                child: Column(
+                  children: <Widget>[
+                    Text(
+                      document["name"] ?? "",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 30.0,
+                        fontSize: 75.0,
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 30.0,
-                  ),
-                  Stack(
-                    children: <Widget>[
-                      Container(
-                          width: double.infinity,
-                          margin: EdgeInsets.fromLTRB(20, 0, 30, 0),
-                          padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                          height: 50,
-                          decoration: BoxDecoration(
-                              border: Border.all(color: Colors.black),
-                              borderRadius: BorderRadius.circular(50)),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: <Widget>[
-                              Container(
-                                margin: EdgeInsets.only(left: 20),
-                                height: 22,
-                                width: 22,
-                                child: Icon(
-                                  Icons.phone_android,
-                                  color: Colors.black,
-                                  size: 20,
-                                ),
-                              ),
-                              SizedBox(width: 10.0,),
-                              Align(
-                                alignment: Alignment(-0.5, 0.0),
-                                child: Text(
-                                  document["phone_number"] ?? "",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w300,
-                                    fontSize: 30.0,
+                    SizedBox(
+                      height: 50.0,
+                    ),
+                    Align(
+                      alignment: Alignment(-0.9, 0.0),
+                      child: Text(
+                        'Your Account',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 30.0,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 50.0,
+                    ),
+                    SizedBox(
+                      height: 25.0,
+                      child: Text('Phone Number',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600,
+                          ),
+                      ),
+                    ),
+                    Stack(
+                      children: <Widget>[
+                        Container(
+                            width: double.infinity,
+                            margin: EdgeInsets.fromLTRB(20, 0, 30, 0),
+                            padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                            height: 50,
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.black),
+                                borderRadius: BorderRadius.circular(50)),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: <Widget>[
+                                Container(
+                                  margin: EdgeInsets.only(left: 20),
+                                  height: 22,
+                                  width: 22,
+                                  child: Icon(
+                                    Icons.phone_android,
+                                    color: Colors.black,
+                                    size: 20,
                                   ),
                                 ),
+                                SizedBox(width: 10.0,),
+                                Align(
+                                  alignment: Alignment(-0.5, 0.0),
+                                  child: Text(
+                                    document["phone_number"] ?? "",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w300,
+                                      fontSize: 30.0,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            )),
+                        Container(
+                          height: 70,
+                          margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                          padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 30.0,
+                      child: Text(
+                        'ID number',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                    Container(
+                        width: double.infinity,
+                        margin: EdgeInsets.fromLTRB(20, 0, 30, 0),
+                        padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                        height: 50,
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.black),
+                            borderRadius: BorderRadius.circular(50)),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Container(
+                              margin: EdgeInsets.only(left: 20),
+                              height: 22,
+                              width: 22,
+                              child: Icon(
+                                Icons.person,
+                                color: Colors.black,
+                                size: 20,
                               ),
-                            ],
-                          )),
-                      Container(
-                        height: 70,
-                        margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
-                        padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 25.0,
-                  ),
-                  Align(
-                    alignment: Alignment(-0.8, 0.0),
-                    child: Text(
-                      document["idnumber"] ?? "",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w300,
-                        fontSize: 30.0,
-                      ),
+                            ),
+                            SizedBox(width: 10.0,),
+                            Align(
+                              alignment: Alignment(-0.8, 0.0),
+                              child: Text(
+                                document["idnumber"] ?? "",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w300,
+                                  fontSize: 30.0,
+                                ),
+                              ),
+                            ),
+                          ],
+                        )),
+                    SizedBox(
+                      height: 30.0,
                     ),
-                  ),
-                  SizedBox(
-                    height: 25.0,
-                  ),
-                  Align(
-                    alignment: Alignment(-0.8, 0.0),
-                    child: Text(
-                      document["licensenumber"] ?? "",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w300,
-                        fontSize: 30.0,
-                      ),
+                    SizedBox(
+                      height: 30.0,
+                      child: Text('License Number',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                        ),),
                     ),
-                  ),
-                ],
+                    Container(
+                        width: double.infinity,
+                        margin: EdgeInsets.fromLTRB(20, 0, 30, 0),
+                        padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                        height: 50,
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.black),
+                            borderRadius: BorderRadius.circular(50)),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Container(
+                              margin: EdgeInsets.only(left: 20),
+                              height: 22,
+                              width: 22,
+                              child: Icon(
+                                Icons.directions_car,
+                                color: Colors.black,
+                                size: 20,
+                              ),
+                            ),
+                            SizedBox(width: 10.0,),
+                            Align(
+                              alignment: Alignment(-0.8, 0.0),
+                              child: Text(
+                                document["licensenumber"] ?? "",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w300,
+                                  fontSize: 30.0,
+                                ),
+                              ),
+                            ),
+                          ],
+                        )),
+                    Container(
+                      height: 70,
+                      margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                      padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
+                    ),
+                  ],
+                ),
               );
             }).toList(),
           );

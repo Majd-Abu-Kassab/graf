@@ -84,7 +84,7 @@ class _SignInOrRegisterState extends State<SignInOrRegister> {
                                 'Login',
                                 style: TextStyle(
                                     fontSize: 16,
-                                    color: Colors.blueAccent),
+                                    color: Colors.amberAccent),
                               )),
                         ),
                       ),
