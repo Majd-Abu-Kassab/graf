@@ -46,7 +46,7 @@ class _ProfileState extends State<Profile> {
       ),
       body: StreamBuilder (
         stream: FirebaseFirestore.instance
-            .collection('CompleteProfile')
+            .collection('Complete your Profile')
             .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (!snapshot.hasData) {
