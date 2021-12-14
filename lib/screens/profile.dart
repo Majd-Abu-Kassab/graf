@@ -47,14 +47,10 @@ class _ProfileState extends State<Profile> {
       body: StreamBuilder (
         stream: FirebaseFirestore.instance
             .collection('CompleteProfile')
-            .orderBy('timestamp')
-            .limitToLast(2)
             .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (!snapshot.hasData) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
+
           }
           return ListView.builder(
               itemCount: snapshot.data.docs.length,
