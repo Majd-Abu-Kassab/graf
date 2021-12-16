@@ -4,6 +4,7 @@ import 'package:lottie_animation/components/rounded_button.dart';
 import 'package:lottie_animation/screens/homescreen.dart';
 import 'package:lottie_animation/services/validation_services.dart';
 import 'package:lottie_animation/models/user.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 
 class CompleteProfile extends StatefulWidget {
@@ -30,6 +31,7 @@ class _CompleteProfileState extends State<CompleteProfile> {
     // SystemChrome.setSystemUIOverlayStyle(
     //     SystemUiOverlayStyle(statusBarColor: Colors.transparent));
 
+    user.Uid=FirebaseAuth.instance.currentUser.uid;
     return Form(
       key:_formKey,
       child: Scaffold(
@@ -269,18 +271,18 @@ class _CompleteProfileState extends State<CompleteProfile> {
                   RoundedButton(
                     title: 'Save',
                     colour: Colors.blueAccent,
-                    onPressed: () {
+                    onPressed: () async{
                       if (_formKey.currentState.validate()) {
-                        FirebaseFirestore.instance
+                         await FirebaseFirestore.instance
                             .collection('CompleteProfile')
-                            .add({'name': user.name,
+                            .add({'Uid':user.Uid ,
+                          'name': user.name,
                           'phone_number':user.phone_number,
                           'idnumber': user.idnumber,
                           'licensenumber':user.licensenumber,
                         });
                       }
                       Navigator.push(context, MaterialPageRoute(builder: (context) => Homescreen()));
-
                     },
                   )
                 ],

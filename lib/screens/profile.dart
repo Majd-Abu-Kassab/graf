@@ -44,19 +44,19 @@ class _ProfileState extends State<Profile> {
             ),
             child: Text("KingProfile")),
       ),
+
       body: StreamBuilder (
-        stream: FirebaseFirestore.instance
-            .collection('Complete your Profile')
+        stream:  FirebaseFirestore.instance
+            .collection('CompleteProfile').where('Uid',isEqualTo: uid)
             .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (!snapshot.hasData) {
-
+            return Text('no data');
           }
           return ListView.builder(
               itemCount: snapshot.data.docs.length,
               itemBuilder: (context,index){
                 DocumentSnapshot info = snapshot.data.docs[index];
-
               return SafeArea(
                 child: Column(
                   children: <Widget>[

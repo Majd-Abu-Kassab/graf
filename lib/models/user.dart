@@ -1,4 +1,5 @@
 class AppUser {
+  String Uid;
   String idnumber;
   String licensenumber;
   String name;
@@ -7,6 +8,12 @@ class AppUser {
   String password;
 
   AppUser();
+
+  // factory AppUser.fromFirestore(dynamic user){
+  //   return AppUser(
+  //     Uid:user.get('Uid')
+  //   );
+  // }
 
   // Map<String, dynamic> toMap() {
   //   return {
