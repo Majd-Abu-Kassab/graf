@@ -94,7 +94,8 @@ class _MapScreenState extends State<MapScreen> {
         ),
         icon: BitmapDescriptor.defaultMarker, //Icon for Marker
       ));
-      markers.add(Marker( //add second marker
+      //add second marker
+      markers.add(Marker(
         markerId: MarkerId(_initialcameraposition.toString()),
         position: LatLng(32.5416707,35.853476), //position of marker
         infoWindow: InfoWindow( //popup info
@@ -103,7 +104,28 @@ class _MapScreenState extends State<MapScreen> {
         ),
         icon: BitmapDescriptor.defaultMarker, //Icon for Marker
       ));
+      //add three marker
+      markers.add(Marker(
+        markerId: MarkerId(_initialcameraposition.toString()),
+        position: LatLng(32.5412920,35.8519215), //position of marker
+        infoWindow: InfoWindow( //popup info
+          title: 'Car ',
+          snippet: 'My Custom Subtitle',
+        ),
+        icon: BitmapDescriptor.defaultMarker, //Icon for Marker
+      ));
+      // add fourth marker:
+      markers.add(Marker(
+        markerId: MarkerId(_initialcameraposition.toString()),
+        position: LatLng(32.5425822,35.8542537), //position of marker
+        infoWindow: InfoWindow( //popup info
+          title: 'Car ',
+          snippet: 'My Custom Subtitle',
+        ),
+        icon: BitmapDescriptor.defaultMarker, //Icon for Marker
+      ));
     });
+
     return markers;
   }
 }
