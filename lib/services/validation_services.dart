@@ -21,7 +21,7 @@ class Errors {
 }
 class ValidationService {
   String emailValidator(String value) {
-    if (value.isEmpty) {
+    if (value.isEmpty || value == null) {
       return 'Please enter a valid email';
     }
 

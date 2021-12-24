@@ -96,7 +96,7 @@ class _MapScreenState extends State<MapScreen> {
       ));
       markers.add(Marker( //add second marker
         markerId: MarkerId(_initialcameraposition.toString()),
-        position: LatLng(32.5403449, 35.8538787), //position of marker
+        position: LatLng(32.5416707,35.853476), //position of marker
         infoWindow: InfoWindow( //popup info
           title: 'Car ',
           snippet: 'My Custom Subtitle',
