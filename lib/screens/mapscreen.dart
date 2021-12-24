@@ -31,48 +31,79 @@ class _MapScreenState extends State<MapScreen> {
   GoogleMapController _controller;
   Location _location = Location();
 
-  void _onMapCreated(GoogleMapController _cntlr)
-  {
+  void _onMapCreated(GoogleMapController _cntlr) {
     _controller = _cntlr;
     _location.onLocationChanged.listen((l) {
       _controller.animateCamera(
         CameraUpdate.newCameraPosition(
-          CameraPosition(target: LatLng(l.latitude, l.longitude),zoom: 15),
+          CameraPosition(target: LatLng(l.latitude, l.longitude), zoom: 15),
         ),
       );
     });
   }
 
+  final Set<Marker> markers = Set();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: NavDrawer(),
       extendBodyBehindAppBar: true,
-      appBar:AppBar(
+      appBar: AppBar(
         backgroundColor: Color(0xFF90ADC6),
         title: Align(
-            alignment: Alignment(-0.4, 0.0,),
-            child: const Text('PARKKING MAP'),
+          alignment: Alignment(-0.4, 0.0,),
+          child: const Text('PARKKING MAP'),
         ),
-      ) ,
+      ),
       body: Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
+        height: MediaQuery
+            .of(context)
+            .size
+            .height,
+        width: MediaQuery
+            .of(context)
+            .size
+            .width,
         child: Stack(
           children: [
             GoogleMap(
-              initialCameraPosition: CameraPosition(target: _initialcameraposition),
+              initialCameraPosition: CameraPosition(
+                  target: _initialcameraposition),
               mapType: MapType.normal,
               onMapCreated: _onMapCreated,
               myLocationEnabled: true,
               padding: EdgeInsets.only(top: 700.0,),
+              markers: getmarkers(),
             ),
+
           ],
         ),
       ),
     );
   }
-
-
+  Set<Marker> getmarkers() {
+    //markers to place on map
+    setState(() {
+      markers.add(Marker( //add first marker
+        markerId: MarkerId(_initialcameraposition.toString()),
+        position: LatLng(32.5419299, 35.8546362), //position of marker
+        infoWindow: InfoWindow( //popup info
+          title: 'Marker Title First ',
+          snippet: 'My Custom Subtitle',
+        ),
+        icon: BitmapDescriptor.defaultMarker, //Icon for Marker
+      ));
+      markers.add(Marker( //add second marker
+        markerId: MarkerId(_initialcameraposition.toString()),
+        position: LatLng(32.5403449, 35.8538787), //position of marker
+        infoWindow: InfoWindow( //popup info
+          title: 'Car ',
+          snippet: 'My Custom Subtitle',
+        ),
+        icon: BitmapDescriptor.defaultMarker, //Icon for Marker
+      ));
+    });
+    return markers;
+  }
 }

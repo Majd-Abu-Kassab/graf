@@ -7,7 +7,7 @@ class AppUser {
   String email;
   String password;
 
-  AppUser();
+  AppUser({Uid});
 
   // factory AppUser.fromFirestore(dynamic user){
   //   return AppUser(
