@@ -92,6 +92,9 @@ class _MapScreenState extends State<MapScreen> {
           title: 'Marker Title First ',
           snippet: 'My Custom Subtitle',
         ),
+        onTap: (){
+          print("success");
+        },
         icon: BitmapDescriptor.defaultMarker, //Icon for Marker
       ));
       //add second marker
@@ -110,8 +113,12 @@ class _MapScreenState extends State<MapScreen> {
         position: LatLng(32.5412920,35.8519215), //position of marker
         infoWindow: InfoWindow( //popup info
           title: 'Car ',
-          snippet: 'My Custom Subtitle',
+          snippet: '3',
+          onTap: (){
+            Text('fuckoff');
+          }
         ),
+
         icon: BitmapDescriptor.defaultMarker, //Icon for Marker
       ));
       // add fourth marker:
@@ -125,6 +132,7 @@ class _MapScreenState extends State<MapScreen> {
         icon: BitmapDescriptor.defaultMarker, //Icon for Marker
       ));
     });
+
 
     return markers;
   }
