@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
+import 'package:lottie_animation/screens/Car_info_screen.dart';
+import 'test.dart';
+
 
 import 'menu.dart';
 
@@ -21,11 +24,13 @@ class MyApp extends StatelessWidget {
 }
 
 class MapScreen extends StatefulWidget {
+
   @override
   _MapScreenState createState() => _MapScreenState();
 }
 
 class _MapScreenState extends State<MapScreen> {
+  bool markerTapped=false;
 
   LatLng _initialcameraposition = LatLng(20.5937, 78.9629);
   GoogleMapController _controller;
@@ -46,38 +51,40 @@ class _MapScreenState extends State<MapScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: NavDrawer(),
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        backgroundColor: Color(0xFF90ADC6),
-        title: Align(
-          alignment: Alignment(-0.4, 0.0,),
-          child: const Text('PARKKING MAP'),
+    return SafeArea(
+      child: Scaffold(
+        bottomSheet: markerTapped ? CarInfo() :null,
+        drawer: NavDrawer(),
+        extendBodyBehindAppBar: true,
+        appBar: AppBar(
+          backgroundColor: Color(0xFF90ADC6),
+          title: Align(
+            alignment: Alignment(-0.4, 0.0,),
+            child: const Text('PARKKING MAP'),
+          ),
         ),
-      ),
-      body: Container(
-        height: MediaQuery
-            .of(context)
-            .size
-            .height,
-        width: MediaQuery
-            .of(context)
-            .size
-            .width,
-        child: Stack(
-          children: [
-            GoogleMap(
-              initialCameraPosition: CameraPosition(
-                  target: _initialcameraposition),
-              mapType: MapType.normal,
-              onMapCreated: _onMapCreated,
-              myLocationEnabled: true,
-              padding: EdgeInsets.only(top: 700.0,),
-              markers: getmarkers(),
-            ),
-
-          ],
+        body: Container(
+          height: MediaQuery
+              .of(context)
+              .size
+              .height,
+          width: MediaQuery
+              .of(context)
+              .size
+              .width,
+          child: Stack(
+            children: [
+              GoogleMap(
+                initialCameraPosition: CameraPosition(
+                    target: _initialcameraposition),
+                mapType: MapType.normal,
+                onMapCreated: _onMapCreated,
+                myLocationEnabled: true,
+                padding: EdgeInsets.only(top: 700.0,),
+                markers: getmarkers(),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -86,20 +93,23 @@ class _MapScreenState extends State<MapScreen> {
     //markers to place on map
     setState(() {
       markers.add(Marker( //add first marker
-        markerId: MarkerId(_initialcameraposition.toString()),
+        markerId: MarkerId("myMarker"),
         position: LatLng(32.5419299, 35.8546362), //position of marker
         infoWindow: InfoWindow( //popup info
           title: 'Marker Title First ',
           snippet: 'My Custom Subtitle',
         ),
         onTap: (){
-          print("success");
+          setState(() {
+            print('test');
+            markerTapped=true;
+          });
         },
         icon: BitmapDescriptor.defaultMarker, //Icon for Marker
       ));
       //add second marker
       markers.add(Marker(
-        markerId: MarkerId(_initialcameraposition.toString()),
+        markerId: MarkerId("myMarker2"),
         position: LatLng(32.5416707,35.853476), //position of marker
         infoWindow: InfoWindow( //popup info
           title: 'Car ',
@@ -109,7 +119,7 @@ class _MapScreenState extends State<MapScreen> {
       ));
       //add three marker
       markers.add(Marker(
-        markerId: MarkerId(_initialcameraposition.toString()),
+        markerId: MarkerId("myMarker3"),
         position: LatLng(32.5412920,35.8519215), //position of marker
         infoWindow: InfoWindow( //popup info
           title: 'Car ',
@@ -123,7 +133,7 @@ class _MapScreenState extends State<MapScreen> {
       ));
       // add fourth marker:
       markers.add(Marker(
-        markerId: MarkerId(_initialcameraposition.toString()),
+        markerId: MarkerId("myMarker4"),
         position: LatLng(32.5425822,35.8542537), //position of marker
         infoWindow: InfoWindow( //popup info
           title: 'Car ',
