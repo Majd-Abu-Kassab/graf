@@ -32,7 +32,6 @@ class ValidationService {
       // print('here');
       return 'Please enter a valid email';
     }
-
     return null;
   }
 

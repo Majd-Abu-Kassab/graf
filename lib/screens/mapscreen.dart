@@ -107,6 +107,7 @@ class _MapScreenState extends State<MapScreen> {
         },
         icon: BitmapDescriptor.defaultMarker, //Icon for Marker
       ));
+      markerTapped=false;
       //add second marker
       markers.add(Marker(
         markerId: MarkerId("myMarker2"),
@@ -125,7 +126,7 @@ class _MapScreenState extends State<MapScreen> {
           title: 'Car ',
           snippet: '3',
           onTap: (){
-            Text('fuckoff');
+            Text('Marker');
           }
         ),
 

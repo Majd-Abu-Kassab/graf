@@ -17,8 +17,6 @@ class Homescreen extends StatefulWidget {
 class _HomescreenState extends State<Homescreen> {
   final _auth = FirebaseAuth.instance;
 
-
-
   @override
   void initState() {
     super.initState();
@@ -59,7 +57,6 @@ class Button1 extends StatelessWidget {
             alignment: Alignment.center,
           child: const Text('PARKKING'),
         ),
-
       ),
       backgroundColor: Color(0xFF333652),
       body: SafeArea(
