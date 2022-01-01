@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie_animation/screens/mapscreen.dart';
 
-User loggedInUser;
+User ? loggedInUser;
 
 void main() {
   runApp(Homescreen());
@@ -28,7 +28,7 @@ class _HomescreenState extends State<Homescreen> {
       final user = _auth.currentUser;
       if (user != null) {
         loggedInUser = user;
-        print(loggedInUser.email);
+        print(loggedInUser!.email);
       }
     } catch (e) {
       print(e);
@@ -74,7 +74,7 @@ class Button1 extends StatelessWidget {
                   fixedSize: const Size(240, 80),
                 ),
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (BuildContext)=> MapScreen()));
+                  Navigator.push(context, MaterialPageRoute(builder: (BuildContext)=> MapView()));
                 },
                 child: Text(
                   'RENT',

@@ -2,8 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:lottie_animation/screens/carData.dart';
-import 'package:lottie_animation/screens/constants.dart';
-import 'package:lottie_animation/components/rounded_button.dart';
+
 
 
 Widget buildCar(Car car, int index){
@@ -22,7 +21,6 @@ Widget buildCar(Car car, int index){
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-
             Align(
               alignment: Alignment.centerRight,
               child: Container(

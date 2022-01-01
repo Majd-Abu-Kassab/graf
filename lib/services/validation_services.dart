@@ -1,4 +1,4 @@
-String password;
+String ? password ;
 class Errors {
   static String show(String errorCode) {
     switch (errorCode) {
@@ -19,8 +19,9 @@ class Errors {
     }
   }
 }
+// @dart=2.9
 class ValidationService {
-  String emailValidator(String value) {
+  String? emailValidator(String value) {
     if (value.isEmpty || value == null) {
       return 'Please enter a valid email';
     }
@@ -35,7 +36,7 @@ class ValidationService {
     return null;
   }
 
-  String passwordValidator(String value) {
+  String? passwordValidator(String value) {
     if (value == null) {
       return 'Please enter a valid password';
     }
@@ -57,7 +58,7 @@ class ValidationService {
     return null;
   }
 
-  String IDValidator(String value) {
+  String? IDValidator(String value) {
     if (value == null || value.isEmpty) {
       return 'Please enter a valid ID number';
     }
@@ -72,7 +73,7 @@ class ValidationService {
     return null;
   }
 
-  String licenseValidator(String value) {
+  String? licenseValidator(String value) {
     if (value == null || value.isEmpty) {
       return 'Please enter a valid License Number';
     }
@@ -87,7 +88,7 @@ class ValidationService {
     return null;
   }
 
-  String contactValidator(String value) {
+  String? contactValidator(String value) {
     if (value == null || value.isEmpty) {
       return 'Please enter a valid phone number';
     }
@@ -106,7 +107,7 @@ class ValidationService {
     return null;
   }
 
-  String nameValidator(String value) {
+  String? nameValidator(String value) {
     if (value == null || value.isEmpty) {
       return 'Please enter a valid name';
     }

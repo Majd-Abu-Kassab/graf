@@ -21,7 +21,6 @@ class NavDrawer extends StatelessWidget {
                       width: 3,
                       color: Color(0xFF333652)
                     ),
-
                     image: DecorationImage(
                         fit: BoxFit.contain,
                       image: AssetImage('assets/logo_2.png'),

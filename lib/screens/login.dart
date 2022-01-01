@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -178,7 +179,7 @@ class _LoginState extends State<Login> {
                     colour: Color(0xFFFAD02C),
                     onPressed: ()async {
                       final user =  await _auth.signInWithEmailAndPassword(
-                          email: userinfo.email, password: userinfo.password).catchError((err) {
+                          email: userinfo.email.toString(), password: userinfo.password.toString()).catchError((err) {
                         showDialog(
                             context: context,
                             builder: (BuildContext context) {

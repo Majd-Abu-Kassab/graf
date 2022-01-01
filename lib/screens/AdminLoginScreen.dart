@@ -1,39 +1,30 @@
 // @dart=2.9
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:lottie_animation/components/rounded_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:lottie_animation/screens/login.dart';
+import 'package:lottie_animation/components/rounded_button.dart';
 import 'package:lottie_animation/models/user.dart';
 import 'package:lottie_animation/services/validation_services.dart';
 
-import 'complete_profile.dart';
 
-class Register extends StatefulWidget {
+class AdminCtrl extends StatefulWidget {
   @override
-  _RegisterState createState() => _RegisterState();
+  _AdminCtrlState createState() => _AdminCtrlState();
 }
 
-class _RegisterState extends State<Register> {
-  final _auth=FirebaseAuth.instance;
+class _AdminCtrlState extends State<AdminCtrl> {
+  final _auth = FirebaseAuth.instance;
   final _formKey = GlobalKey<FormState>();
 
   AppUser userinfo = AppUser();
-
-
   @override
   Widget build(BuildContext context) {
-    //TODO update what details you want
 
-    //for showing loading
-    bool loading = false;
+      SystemChrome.setSystemUIOverlayStyle(
+          SystemUiOverlayStyle(statusBarColor: Colors.transparent));
 
-    // this below line is used to make notification bar transparent
-    SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(statusBarColor: Colors.transparent));
-
-    return Form(
-      key:_formKey,
+      return Form(
+      key: _formKey,
       child: Scaffold(
         body: Stack(
           children: <Widget>[
@@ -45,16 +36,14 @@ class _RegisterState extends State<Register> {
               width: double.infinity,
             ),
             Container(
-              height: double.infinity,
-              width: double.infinity,
               decoration: BoxDecoration(
                   gradient: LinearGradient(
                       begin: Alignment.bottomCenter,
                       end: Alignment.topCenter,
                       colors: [
-                    Color(0xFF333652),
-                    Colors.black.withOpacity(.1),
-                  ])),
+                        Color(0xFF333652),
+                        Colors.black.withOpacity(.1),
+                      ])),
             ),
             Padding(
               padding: EdgeInsets.only(bottom: 60),
@@ -62,26 +51,8 @@ class _RegisterState extends State<Register> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  Text(
-                    'Welcome',
-                    style: TextStyle(
-                      fontSize: 27.0,
-                      color: Colors.white,
-                    ),
-                  ),
                   SizedBox(
                     height: 4,
-                  ),
-                  Text(
-                    //TODO update this
-                    'Join PARK KING!',
-                    style: TextStyle(
-                      fontSize: 16.0,
-                      color: Colors.white,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 16,
                   ),
                   Stack(
                     children: <Widget>[
@@ -113,9 +84,9 @@ class _RegisterState extends State<Register> {
                           margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
                           padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
                           child: TextFormField(
-                            autovalidateMode: AutovalidateMode.onUserInteraction, onChanged: (value) {
-                              userinfo.email = value;
-                            },
+                            autovalidateMode: AutovalidateMode.onUserInteraction,onChanged: (value) {
+                            userinfo.email = value;
+                          },
                             validator: ValidationService().emailValidator,
                             textAlign: TextAlign.center,
                             decoration: InputDecoration(
@@ -127,11 +98,9 @@ class _RegisterState extends State<Register> {
                           )),
                     ],
                   ),
-                  // national id number
                   SizedBox(
                     height: 16,
                   ),
-                  //TODO remove unwanted containers
                   Stack(
                     children: <Widget>[
                       Container(
@@ -163,7 +132,7 @@ class _RegisterState extends State<Register> {
                           padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
                           child: TextFormField(
                             obscureText: true,
-                              autovalidateMode: AutovalidateMode.onUserInteraction,onChanged: (value) {
+                            onChanged: (value) {
                               userinfo.password = value;
                             },
                             validator: ValidationService().passwordValidator,
@@ -182,62 +151,36 @@ class _RegisterState extends State<Register> {
                     height: 10,
                   ),
                   RoundedButton(
-                      title: 'Register',
-                      colour: Color(0xFFFAD02C),
-                      onPressed: ()async {
-                       try {
-                         final newUser = await _auth
-                             .createUserWithEmailAndPassword(
-                             email: userinfo.email.trim(), password: userinfo.password.toString());
-                         if (newUser != null){
-                           Navigator.push(
-                             context,
-                             MaterialPageRoute(builder: (context) => CompleteProfile()),
-                           );
-                         }
-                       }
-                       catch(e){
-                         print(e);
-                       }
-                      }),
-
-
-
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                    height: 50,
-                    decoration:
-                        BoxDecoration(borderRadius: BorderRadius.circular(50)),
-                    margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
-                    child: Center(
-                        child: Text(
-                      "Already have an account",
-                      style: TextStyle(fontSize: 16, color: Colors.white),
-                    )),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Login()),
-                      );
+                    title: 'Login',
+                    colour: Color(0xFFFAD02C),
+                    onPressed: ()async {
+                      final user =  await _auth.signInWithEmailAndPassword(
+                          email: userinfo.email.toString(), password: userinfo.password.toString()).catchError((err) {
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                backgroundColor:Color(0xFF333652) ,
+                                title: Text("Error"),
+                                titleTextStyle: TextStyle(
+                                  color: Colors.white,
+                                ),
+                                content: Text("User doesn't exist!"),
+                                contentTextStyle: TextStyle(
+                                  color: Colors.white,
+                                ),
+                                actions: [
+                                  TextButton(
+                                    child: Text("Ok"),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                  )
+                                ],
+                              );
+                            });
+                      });
                     },
-                    child: Container(
-                      height: 30,
-                      decoration:
-                          BoxDecoration(borderRadius: BorderRadius.circular(50)),
-                      margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
-                      child: Center(
-                          child: Text(
-                        "Login",
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold),
-                      )),
-                    ),
                   ),
                 ],
               ),

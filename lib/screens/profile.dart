@@ -30,8 +30,8 @@ class _ProfileState extends State<Profile> {
   AppUser user = AppUser();
   @override
   Widget build(BuildContext context) {
-    final User user = auth.currentUser;
-    final uid = user.uid;
+    final User? user = auth.currentUser;
+    final uid = user!.uid;
     return Scaffold(
       backgroundColor: Color(0xFFE9EAEC),
       appBar: AppBar(
@@ -53,9 +53,9 @@ class _ProfileState extends State<Profile> {
             return Text('no data');
           }
           return ListView.builder(
-              itemCount: snapshot.data.docs.length,
+              itemCount: snapshot.data!.docs.length,
               itemBuilder: (context,index){
-                DocumentSnapshot info = snapshot.data.docs[index];
+                DocumentSnapshot info = snapshot.data!.docs[index];
               return SafeArea(
                 child: Column(
                   children: <Widget>[

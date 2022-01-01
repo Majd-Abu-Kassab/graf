@@ -32,7 +32,7 @@ class CarInfo extends StatelessWidget {
                     mainAxisSpacing: 15,
                     children: getCarList().map((item) {
                       return GestureDetector(
-                          child: buildCar(item, null)
+                          child: buildCar(item, 0)
                       );
                     }).toList(),
                   ),
