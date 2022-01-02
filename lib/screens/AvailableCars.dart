@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:lottie_animation/components/rounded_button.dart';
 import 'package:lottie_animation/models/Constants.dart';
 import 'CarBlock.dart';
 import 'package:lottie_animation/models/Car.dart';
@@ -30,7 +31,11 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Available Cars'),
+          backgroundColor: Color(0xFF90ADC6),
+        title: Align(
+          alignment: Alignment.center,
+          child: Text('Available Cars'),
+        )
       ),
       body: SafeArea(
         child: StreamBuilder<QuerySnapshot>(
@@ -55,7 +60,7 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
                         ListTile(
                           title: Text( info['Name']+' Car', style: kHeadingStyle),
                           subtitle: Text(
-                            info['Model'],
+                            info['Model']+" "+info['Color'],
                             style: TextStyle(
                               color: greyColor,
                             ),
@@ -64,15 +69,17 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
                             padding: const EdgeInsets.only(bottom: 8.0),
                             child: Image(
                               image: NetworkImage(info['Image']),
-                              width: 70.0,
+                              width: 100.0,
+                              height: 250.0,
                             ),
                           ),
                         ),
-                        CachedNetworkImage(
-                          imageUrl: info['Image'],
-                          placeholder: (context, url) => CircularProgressIndicator(),
-                          errorWidget: (context, url, error) => Icon(Icons.error),
-                        ),
+
+                        // CachedNetworkImage(
+                        //   imageUrl: info['Image'],
+                        //   placeholder: (context, url) => CircularProgressIndicator(),
+                        //   errorWidget: (context, url, error) => Icon(Icons.error),
+                        // ),
                         Row(
                           //Divider line
                           children: <Widget>[
@@ -103,11 +110,12 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
                                             fontSize: 22.0, fontWeight: FontWeight.bold),
                                       ),
                                     ),
+
                                     Container(
                                       //color: Colors.red,
                                       // padding: EdgeInsets.all(8.0),
                                       child: Text(
-                                        'Total',
+                                        'Total'+' JD',
                                         textAlign: TextAlign.right,
                                         style: TextStyle(
                                           color: greyColor,
@@ -115,6 +123,7 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
                                         ),
                                       ),
                                     ),
+                                    RoundedButton(title: 'BOOK NOW', colour:Color(0xFFFAD02C) , onPressed:(){} ),
                                   ],
                                 ),
                               ),
