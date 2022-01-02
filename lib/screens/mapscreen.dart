@@ -253,18 +253,21 @@ class _MapViewState extends State<MapView> {
 
       // Calculating the total distance by adding the distance
       // between small segments
-      for (int i = 0; i < polylineCoordinates.length - 1; i++) {
-        totalDistance += _coordinateDistance(
-          polylineCoordinates[i].latitude,
-          polylineCoordinates[i].longitude,
-          polylineCoordinates[i + 1].latitude,
-          polylineCoordinates[i + 1].longitude,
-        );
+      for (int i = 0; i < polylineCoordinates.length; i++) {
+        if (i < polylineCoordinates.length -1) {
+          totalDistance += _coordinateDistance(
+            polylineCoordinates[i + 1].latitude,
+            polylineCoordinates[i + 1].longitude,
+            polylineCoordinates[i].latitude,
+            polylineCoordinates[i].longitude,
+          );
+        }
       }
 
       setState(() {
         _placeDistance = totalDistance.toStringAsFixed(2);
         print('DISTANCE: $_placeDistance km');
+        print('total $totalDistance km');
       });
 
       return true;
@@ -279,10 +282,10 @@ class _MapViewState extends State<MapView> {
   double _coordinateDistance(lat1, lon1, lat2, lon2) {
     var p = 0.017453292519943295;
     var c = cos;
-    var a = 0.5 -
-        c((lat2 - lat1) * p) / 2 +
+    var a = 0.5 - c((lat2 - lat1) * p) / 2 +
         c(lat1 * p) * c(lat2 * p) * (1 - c((lon2 - lon1) * p)) / 2;
     return 12742 * asin(sqrt(a));
+
   }
 
   // Create the polylines for showing the route between two places
@@ -453,13 +456,15 @@ class _MapViewState extends State<MapView> {
                                 });
                               }),
                           SizedBox(height: 10),
-                          Visibility(
-                            visible: _placeDistance == null ? false : true,
-                            child: Text(
-                              'DISTANCE: $_placeDistance km',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
+                          SafeArea(
+                            child: Visibility(
+                              visible: _placeDistance == null ? false : true,
+                              child: Text(
+                                'DISTANCE: $_placeDistance km',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
                           ),
