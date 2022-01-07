@@ -34,10 +34,10 @@ class _AdminState extends State<Admin> {
       appBar: AppBar(
           backgroundColor: Color(0xFF90ADC6),
           title: Align(
-            alignment: Alignment.center,
-            child: Text('AdminPage'),
-          )
-      ),
+          alignment: Alignment(
+            -0.3,
+            0.0),
+            child: Text('Admin Page'))),
       body: SafeArea(
         child: StreamBuilder<QuerySnapshot>(
             stream: FirebaseFirestore.instance.collection('CompleteProfile').snapshots(),
