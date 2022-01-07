@@ -41,11 +41,6 @@ class _HomescreenState extends State<Homescreen> {
         home: Button1());
   }
 }
-
-
-// extendBodyBehindAppBar: true,
-// appBar:AppBar(
-// title: const Text('PARKKING MAP'),
 class Button1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

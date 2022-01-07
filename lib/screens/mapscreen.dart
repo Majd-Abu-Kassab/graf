@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';// Stores the Google Maps API Key
+import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
@@ -302,7 +302,7 @@ class _MapViewState extends State<MapView> {
       Secrets.API_KEY, // Google Maps API Key
       PointLatLng(startLatitude, startLongitude),
       PointLatLng(destinationLatitude, destinationLongitude),
-      travelMode: TravelMode.transit,
+      travelMode: TravelMode.driving,
     );
 
     if (result.points.isNotEmpty) {

@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:lottie_animation/screens/login.dart';
 import 'package:lottie_animation/screens/profile.dart';
 
-
-
 class NavDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

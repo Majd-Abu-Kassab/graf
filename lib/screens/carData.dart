@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 class NavigationItem {
 
   IconData iconData;
@@ -7,7 +6,6 @@ class NavigationItem {
   NavigationItem(this.iconData);
 
 }
-
 List<NavigationItem> getNavigationItemList(){
   return <NavigationItem>[
     NavigationItem(Icons.home),
@@ -16,7 +14,6 @@ List<NavigationItem> getNavigationItemList(){
     NavigationItem(Icons.person),
   ];
 }
-
 class Car {
 
   String brand;
@@ -27,7 +24,6 @@ class Car {
   Car(this.brand, this.model, this.price, this.images);
 
 }
-
 List<Car> getCarList(){
   return <Car>[
     Car(

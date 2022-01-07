@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:lottie_animation/screens/register.dart';
 import 'package:lottie_animation/components/rounded_button.dart';
 import 'package:lottie_animation/services/validation_services.dart';
+import 'AdminScreen.dart';
 import 'homescreen.dart';
 import 'package:lottie_animation/models/user.dart';
 
@@ -21,7 +22,7 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-    //test feild state
+
 
     //for showing loading
 
@@ -204,12 +205,18 @@ class _LoginState extends State<Login> {
                               );
                             });
                       });
-                      if (user != null) {
+                      if (user.user.email=="majd@email.com") {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => Homescreen()),
+                          MaterialPageRoute(builder: (context) => Admin()),
                         );
                       }
+                      else if(user!=null){
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => Homescreen()),
+                        );
+                        }
                     },
                   ),
                   SizedBox(

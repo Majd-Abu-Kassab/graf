@@ -4,8 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:lottie_animation/screens/login.dart';
 import 'package:lottie_animation/screens/register.dart';
 
-import 'AdminLoginScreen.dart';
-
 class SignInOrRegister extends StatefulWidget {
   @override
   _SignInOrRegisterState createState() => _SignInOrRegisterState();
@@ -89,32 +87,7 @@ class _SignInOrRegisterState extends State<SignInOrRegister> {
                               )),
                         ),
                       ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => AdminCtrl()),
-                          );
-                        },
-                        child: Container(
-                          height: 50,
-                          decoration: BoxDecoration(
-                              border: Border.all(color: Colors.white),
-                              borderRadius: BorderRadius.circular(50)
-                          ),
-                          margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
-                          child: Center(
-                              child: Text(
-                                'Admin LogIn',
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.amberAccent),
-                              )),
-                        ),
-                      ),
+
                       SizedBox(
                         height: 10,
                       ),
