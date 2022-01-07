@@ -35,7 +35,7 @@ class _AdminState extends State<Admin> {
           backgroundColor: Color(0xFF90ADC6),
           title: Align(
             alignment: Alignment.center,
-            child: Text('Available Cars'),
+            child: Text('AdminPage'),
           )
       ),
       body: SafeArea(
@@ -61,7 +61,7 @@ class _AdminState extends State<Admin> {
                         ListTile(
                           title: Text( info['name'], style: kHeadingStyle),
                           subtitle: Text(
-                           'email: '+userEmail,
+                           'Email: '+userEmail,
                             style: TextStyle(
                               color: greyColor,
                             ),
@@ -69,14 +69,14 @@ class _AdminState extends State<Admin> {
                           trailing: Padding(
                             padding: const EdgeInsets.only(bottom: 8.0),
                             child: Text(
-                                'IDnumber: '+info['idnumber']
+                                'Idnumber: '+info['idnumber']
                           ),
                           ),
                         ),
                         SizedBox(
                           height: 10.0,
                         ),
-                        Text('licensenumber: '+info['licensenumber']),
+                        Text('Licensenumber: '+info['licensenumber']),
                         Row(
                           //Divider line
                           children: <Widget>[
