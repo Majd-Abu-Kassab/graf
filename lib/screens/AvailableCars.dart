@@ -29,7 +29,13 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
   void initState() {
     super.initState();
   }
-  final _paymentItems = <PaymentItem>[];
+  final _paymentItems = <PaymentItem>[
+    PaymentItem(
+      label: 'Total',
+      amount: '99.99',
+      status: PaymentItemStatus.final_price,
+    )
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -132,7 +138,7 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
                                         context: context,
                                         builder: (BuildContext context) {
                                           return Container(
-                                            height: 150,
+                                            height: 200,
                                             color: Colors.white,
                                             child: Center(
                                               child: Column(
@@ -183,7 +189,4 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
     );
   }
 }
-//
-// setState(() {
-// Navigator.push(context,MaterialPageRoute(builder: (context) => Payment()));
-// });
+
