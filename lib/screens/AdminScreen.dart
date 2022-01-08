@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie_animation/components/rounded_button.dart';
 import 'package:lottie_animation/models/Constants.dart';
+import 'package:lottie_animation/services/Delete_doc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -49,7 +50,6 @@ class _AdminState extends State<Admin> {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return Text("Loading");
               }
-
               return ListView.builder(
                   padding: new EdgeInsets.all(8.0),
                   itemCount: snapshot.data.docs.length,
@@ -108,6 +108,11 @@ class _AdminState extends State<Admin> {
                                     //   ),
                                     // ),
                                     RoundedButton(title: 'Delete User', colour:Color(0xFFFAD02C) , onPressed:(){
+                                      setState(() {
+                                        final userid = info['Uid'];
+                                        // AuthService().deleteUser(userEmail, null);
+                                        DatabaseService().deleteuser(userid);
+                                      });
                                     } ),
                                   ],
                                 ),
@@ -120,7 +125,6 @@ class _AdminState extends State<Admin> {
                   });
             }),
       ),
-
     );
   }
 }
