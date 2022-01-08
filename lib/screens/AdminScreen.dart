@@ -109,8 +109,10 @@ class _AdminState extends State<Admin> {
                                     RoundedButton(title: 'Delete User', colour:Color(0xFFFAD02C) , onPressed:(){
                                       setState(() {
                                         final docid = info.id;
-                                        final email=userinfo.email;
-                                        final password=userinfo.password;
+                                        var email=userinfo.email;
+                                        email=info['Uid'];
+                                        var password=userinfo.password;
+                                        password=info['Uid'];
                                         DatabaseService().deleteData(docid);
                                         AuthService().deleteUser(email,password);
                                       });
