@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie_animation/components/rounded_button.dart';
 import 'package:lottie_animation/models/Constants.dart';
+import 'package:lottie_animation/models/user.dart';
 import 'package:lottie_animation/services/Delete_doc.dart';
 
 void main() async {
@@ -28,6 +29,7 @@ class _AdminState extends State<Admin> {
   Widget build(BuildContext context) {
     final User user = auth.currentUser;
     final userEmail = user.email;
+    AppUser userinfo = AppUser();
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Color(0xFF90ADC6),
@@ -107,8 +109,10 @@ class _AdminState extends State<Admin> {
                                     RoundedButton(title: 'Delete User', colour:Color(0xFFFAD02C) , onPressed:(){
                                       setState(() {
                                         final docid = info.id;
-                                        // AuthService().deleteUser(userEmail, null);
+                                        final email=userinfo.email;
+                                        final password=userinfo.password;
                                         DatabaseService().deleteData(docid);
+                                        AuthService().deleteUser(email,password);
                                       });
                                     } ),
                                   ],
