@@ -1,20 +1,19 @@
 // @dart=2.9
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-
 
 class DatabaseService {
-  final String uid;
+  //final String uid;
 
 
-  DatabaseService( { this.uid});
+  //DatabaseService( { this.uid});
 
-  final CollectionReference userCollection =
-  FirebaseFirestore.instance.collection('CompleteProfile');
+  //final CollectionReference userCollection =
+  //FirebaseFirestore.instance.collection('CompleteProfile');
 
-  Future deleteuser(String Uid) {
-    Uid=uid;
-    return userCollection.doc(uid).delete();
+  deleteData(docId){
+    FirebaseFirestore.instance.collection('CompleteProfile').doc(docId).delete().catchError((e){
+      print(e);
+    });
   }
 }
 // class AuthService {

@@ -14,9 +14,6 @@ void main() async {
   runApp(MaterialApp(home: Admin()));
 }
 
-
-
-
 class Admin extends StatefulWidget {
 
 
@@ -109,9 +106,9 @@ class _AdminState extends State<Admin> {
                                     // ),
                                     RoundedButton(title: 'Delete User', colour:Color(0xFFFAD02C) , onPressed:(){
                                       setState(() {
-                                        final userid = info['Uid'];
+                                        final docid = info.id;
                                         // AuthService().deleteUser(userEmail, null);
-                                        DatabaseService().deleteuser(userid);
+                                        DatabaseService().deleteData(docid);
                                       });
                                     } ),
                                   ],
