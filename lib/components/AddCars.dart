@@ -4,26 +4,29 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie_animation/components/rounded_button.dart';
 import 'package:lottie_animation/models/Car.dart';
+import 'package:lottie_animation/services/Delete_doc.dart';
 
 class AddCars extends StatefulWidget {
   @override
   _AddCarsState createState() => _AddCarsState();
 }
-//
 
 class _AddCarsState extends State<AddCars> {
   Car car= Car();
+  void initState() {
+    _carList();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // Add your onPressed code here!
           addDialog(context);
         },
         backgroundColor: Colors.blue,
         child: const Icon(Icons.add),
       ),
+      body: _carList(),
     );
   }
   Future<bool> addDialog(BuildContext context) async {
@@ -48,7 +51,7 @@ class _AddCarsState extends State<AddCars> {
                   height: 5,
                 ),
                 TextField(
-                  decoration: InputDecoration(hintText: 'Enter car Image'),
+                  decoration: InputDecoration(hintText: 'Enter car Image Url'),
                   onChanged: (value) {
                     car.Image = value;
                   },
@@ -95,21 +98,101 @@ class _AddCarsState extends State<AddCars> {
                     'Name':car.Name,
                     'Price':car.Price,
                   });
-                  if(car!=null){
-                    ScaffoldMessenger.of(context)
-                        .showSnackBar(
-                        SnackBar(
-                          content: Text(
-                              'Car added successfully'),
-                        )
-                    );
-                  }
-                  Navigator.of(context).pop();
+                  dialogTrigger(context);
+                  initState();
+                  //Navigator.of(context).pop();
                   }, //onpressed
               )
             ],
           );
         });
   }
+  Future<bool> updateDialog(BuildContext context, selectedDoc, data) async {
+    return showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text(
+              'Update Data',
+              style: TextStyle(fontSize: 15),
+            ),
+            content: Column(
+              children: <Widget>[
+                TextFormField(
+                  decoration: InputDecoration(hintText: 'Enter car Price'),
+                  initialValue: data['Price'],
+                  onChanged: (value) {
+                    car.Price = value;
+                  },
+                ),
+              ],
+            ),
+            actions: <Widget>[
+              RoundedButton(
+                title: 'Update',
+                colour: Colors.blue,
+                onPressed: () {
+                  Map<String, dynamic> carData = {
+                    'Price':car.Price
+                  };
+                  FirebaseFirestore.instance.collection('Cars').doc(selectedDoc).update(carData);
+                  dialogTrigger(context);
+                  initState();
+                  //Navigator.of(context).pop();
+                }
+                )
+            ],
+          );
+        });
+  }
+  Future<bool> dialogTrigger(BuildContext context) async {
+    return showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text(
+              'Job Done',
+              style: TextStyle(fontSize: 15),
+            ),
+            content: Text('Added'),
+            actions: <Widget>[
+              RoundedButton(
+              title: 'Alright',
+                colour: Colors.blue,
+                onPressed: (){
+                  Navigator.of(context).pop();
+                },
+          )
+            ],
+          );
+        });
+  }
+  Widget _carList() {
+    return StreamBuilder<QuerySnapshot>(
+          stream: FirebaseFirestore.instance.collection('Cars').snapshots(),
+          builder: (context, snapshot) {
+            return ListView.builder(
+                itemCount: snapshot.data.docs.length,
+                padding: EdgeInsets.all(5.0),
+                itemBuilder: (context, i) {
+                  DocumentSnapshot carinfo = snapshot.data.docs[i];
+                  return new ListTile(
+                    title: Text(carinfo['Name'] +" "+carinfo['Model']),
+                    subtitle: Text(carinfo['Price']),
+                    onTap: (){
+                      updateDialog(context, snapshot.data.docs[i].id, snapshot.data.docs[i]);
+                    },
+                    onLongPress: () {
+                      DatabaseService().deletedata(snapshot.data.docs[i].id);
+                    },
+                  );
+                });
+          });
+
+  }
 }
+
+
 

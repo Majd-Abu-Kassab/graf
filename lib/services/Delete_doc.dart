@@ -19,6 +19,15 @@ class DatabaseService {
       print(e);
     });
   }
+  deletedata(docId){
+    FirebaseFirestore.instance
+        .collection('Cars')
+        .doc(docId)
+        .delete()
+        .catchError((e) {
+      print(e);
+    });
+  }
 }
 /*
 class AuthService {
