@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie_animation/components/AddCars.dart';
 import 'package:lottie_animation/components/rounded_button.dart';
 import 'package:lottie_animation/models/Constants.dart';
 //import 'package:lottie_animation/models/user.dart';
@@ -161,7 +162,7 @@ class _AdminState extends State<Admin>  with SingleTickerProviderStateMixin {
                       });
                 }),
           ),
-          Text('data'),
+          AddCars(),
         ]),
       ),
     );
