@@ -31,13 +31,11 @@ class _AdminState extends State<Admin>  with SingleTickerProviderStateMixin {
     super.initState();
     _controller = TabController(length: 2,vsync: this );
   }
-
   @override
   void dispose() {
     _controller.dispose();
     super.dispose();
   }
-
   @override
   Widget build(BuildContext context) {
     final User user = auth.currentUser;

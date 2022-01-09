@@ -31,10 +31,12 @@ class _AddCarsState extends State<AddCars> {
   }
   Future<bool> addDialog(BuildContext context) async {
     return showDialog(
+      useSafeArea: true,
         context: context,
         barrierDismissible: false,
         builder: (BuildContext context) {
           return AlertDialog(
+             insetPadding: EdgeInsets.symmetric(vertical: 170),
             title: Text(
               'Add Car',
               style: TextStyle(fontSize: 15),
@@ -109,10 +111,12 @@ class _AddCarsState extends State<AddCars> {
   }
   Future<bool> updateDialog(BuildContext context, selectedDoc, data) async {
     return showDialog(
+      useSafeArea: true,
         context: context,
         barrierDismissible: false,
         builder: (BuildContext context) {
           return AlertDialog(
+            insetPadding: EdgeInsets.symmetric(vertical: 290),
             title: Text(
               'Update Data',
               style: TextStyle(fontSize: 15),
