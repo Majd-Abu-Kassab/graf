@@ -6,10 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:lottie_animation/components/rounded_button.dart';
 import 'package:lottie_animation/models/Constants.dart';
+import 'package:lottie_animation/screens/test.dart';
 import 'package:lottie_animation/services/Payment_Services.dart';
+import 'package:lottie_animation/services/payment_handler.dart';
 import 'package:pay/pay.dart';
-import 'CarBlock.dart';
-import 'package:lottie_animation/models/Car.dart';
+import 'package:flutter_braintree/flutter_braintree.dart';
 
 
 void main() async {
@@ -134,46 +135,7 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
                                       ),
                                     ),
                                     RoundedButton(title: 'BOOK NOW', colour:Color(0xFFFAD02C) , onPressed:(){
-                                      showModalBottomSheet<void>(
-                                        context: context,
-                                        builder: (BuildContext context) {
-                                          return Container(
-                                            height: 200,
-                                            color: Colors.white,
-                                            child: Center(
-                                              child: Column(
-                                                mainAxisAlignment: MainAxisAlignment.center,
-                                                mainAxisSize: MainAxisSize.min,
-                                                children: <Widget>[
-                                                   Row(mainAxisAlignment:MainAxisAlignment.center ,
-                                                    children: [
-                                                      GooglePayButton(
-                                                        paymentConfigurationAsset: 'gpay.json',
-                                                        paymentItems: _paymentItems,
-                                                        width: 200,
-                                                        height: 50,
-                                                        style: GooglePayButtonStyle.black,
-                                                        type: GooglePayButtonType.pay,
-                                                        margin: const EdgeInsets.only(top: 15.0),
-                                                        onPaymentResult: (data) {
-                                                          print(data);
-                                                        },
-                                                        loadingIndicator: const Center(
-                                                          child: CircularProgressIndicator(),
-                                                        ),
-                                                      )
-                                                    ],
-                                                  )
-                                                  // ElevatedButton(
-                                                  //   child: const Text('Close BottomSheet'),
-                                                  //   onPressed: () => Navigator.pop(context),
-                                                  // )
-                                                ],
-                                              ),
-                                            ),
-                                          );
-                                        },
-                                      );
+                                      PaymentHandler().getClientToken(context);
                                     } ),
                                   ],
                                 ),

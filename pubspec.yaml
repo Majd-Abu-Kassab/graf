@@ -38,6 +38,7 @@ dependencies:
   geocoding: ^2.0.1
   cached_network_image: ^3.2.0
   pay: ^1.0.7
+  flutter_braintree: ^2.2.0
 
 
 
