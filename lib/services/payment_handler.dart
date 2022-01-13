@@ -5,7 +5,8 @@ import 'package:flutter_braintree/flutter_braintree.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:lottie_animation/models/user.dart';
-import 'package:lottie_animation/screens/test.dart';
+import 'package:lottie_animation/screens/checkout.dart';
+import 'package:flutter/scheduler.dart';
 
 
 
@@ -29,7 +30,7 @@ class PaymentHandler {
   };
   var token = kWebBraintreeToken;
 
-  void getClientToken(context) async {
+  Future <void> getClientToken(context) async {
     var customerId = model.Uid;
     if (customerId != '') {
       var res = await http.get(
@@ -46,7 +47,7 @@ class PaymentHandler {
 
   void getMobilePaymentNonce(context) async {
     final request = BraintreeDropInRequest(
-      amount: "4.8",
+      amount: "60",
       vaultManagerEnabled: true,
       clientToken: token.toString(),
       collectDeviceData: true,
@@ -56,6 +57,12 @@ class PaymentHandler {
     var nonce = result?.paymentMethodNonce.nonce;
     print(nonce);
     checkout(nonce!);
+    SchedulerBinding.instance!.addPostFrameCallback((_) {
+      // Navigator.push(
+      //   context,
+      //   MaterialPageRoute(builder: (context) => Checkout(car: '',)),
+      // );
+    });
   }
 
   void checkout(String nonce) async {
@@ -79,10 +86,11 @@ class PaymentHandler {
             Uri.parse('$kWebBraintreeLink/widgets/create-customer'),
             headers: headers,
             body: json.encode(userData));
+
         if (res.statusCode != 200) {
           throw Exception('http.post error: statusCode= ${res.statusCode}');
         }
-        var transactionData = {"amount": 4.80, "customerId": model.Uid};
+        var transactionData = {"amount": 60, "customerId": model.Uid};
         res = await http.post(
             Uri.parse('$kWebBraintreeLink/widgets/checkout-id'),
             headers: headers,
@@ -95,17 +103,19 @@ class PaymentHandler {
     }
     if (!newUser) {
       var transactionData = {
-        "amount": 4.80,
+        "amount": 60,
         "payment_method_nonce": nonce,
       };
       var res = await http.post(
           Uri.parse('$kWebBraintreeLink/widgets/checkout'),
           headers: headers,
           body: json.encode(transactionData));
+      print(res.body);
       if (res.statusCode != 200) {
         throw Exception('http.post error: statusCode= ${res.statusCode}');
-      }
-    }
 
+      }
+
+    }
   }
 }

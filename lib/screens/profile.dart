@@ -63,7 +63,7 @@ class _ProfileState extends State<Profile> {
                       info["name"] ?? "",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 75.0,
+                        fontSize: 70.0,
                       ),
                     ),
                     SizedBox(

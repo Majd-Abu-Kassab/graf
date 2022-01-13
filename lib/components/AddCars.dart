@@ -36,7 +36,7 @@ class _AddCarsState extends State<AddCars> {
         barrierDismissible: false,
         builder: (BuildContext context) {
           return AlertDialog(
-             insetPadding: EdgeInsets.symmetric(vertical: 170),
+             insetPadding: EdgeInsets.symmetric(vertical: 50),
             title: Text(
               'Add Car',
               style: TextStyle(fontSize: 15),
@@ -115,38 +115,39 @@ class _AddCarsState extends State<AddCars> {
         context: context,
         barrierDismissible: false,
         builder: (BuildContext context) {
-          return AlertDialog(
-            insetPadding: EdgeInsets.symmetric(vertical: 290),
-            title: Text(
-              'Update Data',
-              style: TextStyle(fontSize: 15),
-            ),
-            content: Column(
-              children: <Widget>[
-                TextFormField(
-                  decoration: InputDecoration(hintText: 'Enter car Price'),
-                  initialValue: data['Price'],
-                  onChanged: (value) {
-                    car.Price = value;
-                  },
-                ),
+          return SafeArea(
+            child: AlertDialog(
+              title: Text(
+                'Update Data',
+                style: TextStyle(fontSize: 15),
+              ),
+              content: Column(
+                children: <Widget>[
+                  TextFormField(
+                    decoration: InputDecoration(hintText: 'Enter car Price'),
+                    initialValue: data['Price'],
+                    onChanged: (value) {
+                      car.Price = value;
+                    },
+                  ),
+                ],
+              ),
+              actions: <Widget>[
+                RoundedButton(
+                  title: 'Update',
+                  colour: Colors.blue,
+                  onPressed: () {
+                    Map<String, dynamic> carData = {
+                      'Price':car.Price
+                    };
+                    FirebaseFirestore.instance.collection('Cars').doc(selectedDoc).update(carData);
+                    dialogTrigger(context);
+                    initState();
+                    //Navigator.of(context).pop();
+                  }
+                  )
               ],
             ),
-            actions: <Widget>[
-              RoundedButton(
-                title: 'Update',
-                colour: Colors.blue,
-                onPressed: () {
-                  Map<String, dynamic> carData = {
-                    'Price':car.Price
-                  };
-                  FirebaseFirestore.instance.collection('Cars').doc(selectedDoc).update(carData);
-                  dialogTrigger(context);
-                  initState();
-                  //Navigator.of(context).pop();
-                }
-                )
-            ],
           );
         });
   }

@@ -471,13 +471,14 @@ class _MapViewState extends State<MapView> {
                               SafeArea(
                                 child: Visibility(
                                   visible: _placeDistance == null ? false : true,
-                                  child: Text(
-                                    'DISTANCE: $_placeDistance km',
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
+                                  child: Text(''),
+                                  // child: Text(
+                                  //   'DISTANCE: $_placeDistance km',
+                                  //   style: TextStyle(
+                                  //     fontSize: 16,
+                                  //     fontWeight: FontWeight.bold,
+                                  //   ),
+                                  // ),
                                 ),
                               ),
                               SizedBox(height: 5),
@@ -497,23 +498,23 @@ class _MapViewState extends State<MapView> {
                                   });
 
                                   _calculateDistance().then((isCalculated) {
-                                    if (isCalculated) {
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        SnackBar(
-                                          content: Text(
-                                              'Distance Calculated Sucessfully'),
-                                        ),
-                                      );
-                                    } else {
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        SnackBar(
-                                          content: Text(
-                                              'Error Calculating Distance'),
-                                        ),
-                                      );
-                                    }
+                                    // if (isCalculated) {
+                                    //   ScaffoldMessenger.of(context)
+                                    //       .showSnackBar(
+                                    //     SnackBar(
+                                    //       content: Text(
+                                    //           'Distance Calculated Sucessfully'),
+                                    //     ),
+                                    //   );
+                                    // } else {
+                                    //   ScaffoldMessenger.of(context)
+                                    //       .showSnackBar(
+                                    //     SnackBar(
+                                    //       content: Text(
+                                    //           'Error Calculating Distance'),
+                                    //     ),
+                                    //   );
+                                    // }
                                   });
                                 }
                                     : null,
@@ -528,15 +529,49 @@ class _MapViewState extends State<MapView> {
                                   ),
                                 ),
                                 style: ElevatedButton.styleFrom(
-                                  primary: Colors.red,
+                                  primary: Color(0xFF333652),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(20.0),
                                   ),
                                 ),
                               ),
-                              RoundedButton(title: 'Available Cars', colour: Color(0xFFFAD02C), onPressed: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (context) =>  SearchResultsScreen()));
-                              })
+                              // RoundedButton(title: 'Available Cars', colour: Color(0xFFFAD02C), onPressed: (){
+                              //   Navigator.push(context, MaterialPageRoute(builder: (context) =>  SearchResultsScreen()));
+                              // })
+                              ElevatedButton( onPressed: (_startAddress != '' &&
+                                  _destinationAddress != '')
+                                  ? () async {
+                                startAddressFocusNode.unfocus();
+                                desrinationAddressFocusNode.unfocus();
+                                setState(() {
+                                  if (markers.isNotEmpty) markers.clear();
+                                  if (polylines.isNotEmpty)
+                                    polylines.clear();
+                                  if (polylineCoordinates.isNotEmpty)
+                                    polylineCoordinates.clear();
+                                  _placeDistance = null;
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => SearchResultsScreen()));
+                                });
+
+                              }
+                                  : null,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              'Available Cars'.toUpperCase(),
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20.0,
+                              ),
+                            ),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.amberAccent,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                          ),
+                        ),
                             ],
                           ),
                         ),

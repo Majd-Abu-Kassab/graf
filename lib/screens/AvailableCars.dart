@@ -1,16 +1,12 @@
 // @dart=2.9
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:lottie_animation/components/rounded_button.dart';
 import 'package:lottie_animation/models/Constants.dart';
-import 'package:lottie_animation/screens/test.dart';
-import 'package:lottie_animation/services/Payment_Services.dart';
+import 'package:lottie_animation/screens/checkout.dart';
 import 'package:lottie_animation/services/payment_handler.dart';
-import 'package:pay/pay.dart';
-import 'package:flutter_braintree/flutter_braintree.dart';
 
 
 void main() async {
@@ -20,6 +16,9 @@ void main() async {
 }
 
 class SearchResultsScreen extends StatefulWidget {
+
+
+  const SearchResultsScreen({Key key}) : super(key: key);
   @override
   _SearchResultsScreenState createState() => _SearchResultsScreenState();
 }
@@ -28,15 +27,9 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
 
   @override
   void initState() {
+    // PaymentHandler().getClientToken(context);
     super.initState();
   }
-  final _paymentItems = <PaymentItem>[
-    PaymentItem(
-      label: 'Total',
-      amount: '99.99',
-      status: PaymentItemStatus.final_price,
-    )
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +37,7 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
       appBar: AppBar(
           backgroundColor: Color(0xFF90ADC6),
         title: Align(
-          alignment: Alignment.center,
+          alignment: Alignment(-0.3, 0.0,),
           child: Text('Available Cars'),
         )
       ),
@@ -135,7 +128,9 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
                                       ),
                                     ),
                                     RoundedButton(title: 'BOOK NOW', colour:Color(0xFFFAD02C) , onPressed:(){
-                                      PaymentHandler().getClientToken(context);
+                                       PaymentHandler().getClientToken(context);
+                                      // Navigator.push(context, MaterialPageRoute(builder: (context) => Checkout(car:info["Price"])));
+
                                     } ),
                                   ],
                                 ),
