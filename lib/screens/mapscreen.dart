@@ -3,29 +3,12 @@ import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:lottie_animation/components/rounded_button.dart';
-
 import 'dart:math' show cos, sqrt, asin;
 
 import '../Secrets.dart';
 import 'AvailableCars.dart';
 import 'menu.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-
-      home: MapView(
-
-      ),
-    );
-  }
-}
 
 class MapView extends StatefulWidget {
   @override

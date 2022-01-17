@@ -1,20 +1,12 @@
 // @dart=2.9
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie_animation/components/AddCars.dart';
 import 'package:lottie_animation/components/rounded_button.dart';
 import 'package:lottie_animation/models/Constants.dart';
-//import 'package:lottie_animation/models/user.dart';
 import 'package:lottie_animation/services/Delete_doc.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  runApp(MaterialApp(home: Admin()));
-}
 
 class Admin extends StatefulWidget {
   @override
@@ -25,7 +17,6 @@ class _AdminState extends State<Admin>  with SingleTickerProviderStateMixin {
   final FirebaseAuth auth = FirebaseAuth.instance;
 
   TabController _controller;
-  int _selectedIndex = 0;
   @override
   void initState() {
     super.initState();

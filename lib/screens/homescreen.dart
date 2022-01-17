@@ -5,10 +5,6 @@ import 'package:lottie_animation/screens/mapscreen.dart';
 
 User ? loggedInUser;
 
-void main() {
-  runApp(Homescreen());
-}
-
 class Homescreen extends StatefulWidget {
   @override
   State<Homescreen> createState() => _HomescreenState();

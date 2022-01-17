@@ -1,19 +1,12 @@
 // @dart=2.9
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:lottie_animation/components/rounded_button.dart';
 import 'package:lottie_animation/models/Constants.dart';
-import 'package:lottie_animation/screens/checkout.dart';
 import 'package:lottie_animation/services/payment_handler.dart';
 
+import 'checkout.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  runApp(MaterialApp(home: SearchResultsScreen()));
-}
 
 class SearchResultsScreen extends StatefulWidget {
 
@@ -128,9 +121,8 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
                                       ),
                                     ),
                                     RoundedButton(title: 'BOOK NOW', colour:Color(0xFFFAD02C) , onPressed:(){
-                                       PaymentHandler().getClientToken(context);
-                                      // Navigator.push(context, MaterialPageRoute(builder: (context) => Checkout(car:info["Price"])));
-
+                                      // PaymentHandler(amount:info['Price'].toString(),carDetails: info['Name'] + '-'+ info['Model'] + '-'+ info['Color']).getClientToken(context);
+                                      Navigator.push(context, MaterialPageRoute(builder: (context) => Checkout(info:info)));
                                     } ),
                                   ],
                                 ),

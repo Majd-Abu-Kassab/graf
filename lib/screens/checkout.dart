@@ -1,23 +1,20 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie_animation/models/chechoutconst.dart';
+//import 'package:lottie_animation/models/chechoutconst.dart';
+import 'package:lottie_animation/services/payment_handler.dart';
 
-class Checkout extends StatefulWidget {
-  final String car;
-  const Checkout({Key? key, required this.car}) : super(key: key);
+class Checkout extends StatelessWidget {
+  final DocumentSnapshot info;
 
-  @override
-  _CheckoutState createState() => _CheckoutState();
-}
+  const Checkout({Key? key, required this.info}) : super(key: key);
 
-class _CheckoutState extends State<Checkout> {
   @override
   Widget build(BuildContext context) {
-     var car = ModalRoute.of(context)!.settings.arguments;
 
     return Container(
       padding: EdgeInsets.symmetric(
-        vertical: getProportionateScreenWidth(15),
-        horizontal: getProportionateScreenWidth(30),
+        vertical: 15,
+        horizontal: 30,
       ),
       // height: 174,
       decoration: BoxDecoration(
@@ -43,8 +40,8 @@ class _CheckoutState extends State<Checkout> {
               children: [
                 Container(
                   padding: EdgeInsets.all(10),
-                  height: getProportionateScreenWidth(40),
-                  width: getProportionateScreenWidth(40),
+                  //height: getProportionateScreenWidth(40),
+                  //width: getProportionateScreenWidth(40),
                   decoration: BoxDecoration(
                     color: Color(0xFFF5F6F9),
                     borderRadius: BorderRadius.circular(10),
@@ -56,11 +53,11 @@ class _CheckoutState extends State<Checkout> {
                 Icon(
                   Icons.arrow_forward_ios,
                   size: 12,
-                  color: kTextColor,
+                  //color: kTextColor,
                 )
               ],
             ),
-            SizedBox(height: getProportionateScreenHeight(20)),
+            //SizedBox(height: getProportionateScreenHeight(20)),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -69,19 +66,20 @@ class _CheckoutState extends State<Checkout> {
                     text: "Total:\n",
                     children: [
                       TextSpan(
-                        text: "\$337.15",
+                        text: "JD${info['Price'].toString()}",
                         style: TextStyle(fontSize: 16, color: Colors.black),
                       ),
                     ],
                   ),
                 ),
                 SizedBox(
-                  width: getProportionateScreenWidth(190),
-                  child: DefaultButton(
-                    text: "Check Out",
-                    press: () {},
-                  ),
-                ),
+                    //width: getProportionateScreenWidth(190),
+                    child: ElevatedButton(
+                      child: Text('Check Out'),
+                      onPressed: () {
+                        PaymentHandler(amount:info['Price'].toString(),carDetails: info['Name'] + '-'+ info['Model'] + '-'+ info['Color']).getClientToken(context);
+                      },
+                    )),
               ],
             ),
           ],

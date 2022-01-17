@@ -3,9 +3,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
 import 'screens/accountscreen.dart';
 import 'package:lottie_animation/screens/accountscreen.dart';
-import 'package:flutter/cupertino.dart';
+
 
   void main() async {
     WidgetsFlutterBinding.ensureInitialized();
@@ -14,7 +15,6 @@ import 'package:flutter/cupertino.dart';
 }
 
 class MyApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
