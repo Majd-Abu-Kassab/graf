@@ -2,9 +2,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 import 'package:lottie_animation/screens/register.dart';
 import 'package:lottie_animation/components/rounded_button.dart';
-import 'package:lottie_animation/services/validation_services.dart';
 import 'AdminScreen.dart';
 import 'homescreen.dart';
 import 'package:lottie_animation/models/user.dart';
@@ -109,10 +109,12 @@ class _LoginState extends State<Login> {
                           margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
                           padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
                           child: TextFormField(
-                            autovalidateMode: AutovalidateMode.onUserInteraction,onChanged: (value) {
-                              userinfo.email = value;
-                            },
-                            validator: ValidationService().emailValidator,
+                           onChanged: (value){
+                             userinfo.email=value;
+                           },
+                            validator:MultiValidator([
+                              RequiredValidator(errorText: "* Required"),
+                              EmailValidator(errorText: "Enter a valid email ")]),
                             textAlign: TextAlign.center,
                             decoration: InputDecoration(
                                 hintText: 'Email',
@@ -160,7 +162,14 @@ class _LoginState extends State<Login> {
                             onChanged: (value) {
                               userinfo.password = value;
                             },
-                            validator: ValidationService().passwordValidator,
+                            validator:MultiValidator([
+                              RequiredValidator(errorText: "* Required"),
+                              MinLengthValidator(6,
+                                  errorText: "Password should be at least 6 characters"),
+                              MaxLengthValidator(15,
+                                  errorText:
+                                  "Password should not be greater than 15 characters")
+                            ]),
                             textAlign: TextAlign.center,
                             decoration: InputDecoration(
                               hintText: 'Password',
@@ -179,44 +188,51 @@ class _LoginState extends State<Login> {
                     title: 'Login',
                     colour: Color(0xFFFAD02C),
                     onPressed: ()async {
-                      final user =  await _auth.signInWithEmailAndPassword(
-                          email: userinfo.email.toString(), password: userinfo.password.toString()).catchError((err) {
-                        showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                backgroundColor:Color(0xFF333652) ,
-                                title: Text("Error"),
-                                titleTextStyle: TextStyle(
-                                  color: Colors.white,
-                                ),
-                                content: Text("User doesn't exist!"),
-                                contentTextStyle: TextStyle(
-                                  color: Colors.white,
-                                ),
-                                actions: [
-                                  TextButton(
-                                    child: Text("Ok"),
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                  )
-                                ],
-                              );
-                            });
-                      });
-                      if (user.user.email=="majd@email.com") {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => Admin()),
-                        );
-                      }
-                      else if(user!=null){
-                        Navigator.push(
+                      if(_formKey.currentState.validate()) {
+                        final user = await _auth.signInWithEmailAndPassword(
+                            email: userinfo.email.toString(),
+                            password: userinfo.password.toString()).catchError((
+                            err) {
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  backgroundColor: Color(0xFF333652),
+                                  title: Text("Error"),
+                                  titleTextStyle: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                  content: Text("User doesn't exist!"),
+                                  contentTextStyle: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                  actions: [
+                                    TextButton(
+                                      child: Text("Ok"),
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                    )
+                                  ],
+                                );
+                              });
+                        });
+                        if (user.user.email == "majd@email.com") {
+                          Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => Homescreen()),
-                        );
+                            MaterialPageRoute(builder: (context) => Admin()),
+                          );
                         }
+                        else if (user != null) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Homescreen()),
+                          );
+                        }
+                      } else{
+                        print('not valid');
+                      }
                     },
                   ),
                   SizedBox(

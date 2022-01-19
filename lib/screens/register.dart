@@ -5,29 +5,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lottie_animation/screens/login.dart';
 import 'package:lottie_animation/models/user.dart';
-import 'package:lottie_animation/services/validation_services.dart';
-
+import 'package:form_field_validator/form_field_validator.dart';
 import 'complete_profile.dart';
 
-class Register extends StatefulWidget {
+class Register extends StatefulWidget  {
   @override
   _RegisterState createState() => _RegisterState();
 }
 
-class _RegisterState extends State<Register> {
+class _RegisterState extends State<Register>{
   final _auth=FirebaseAuth.instance;
   final _formKey = GlobalKey<FormState>();
-
   AppUser userinfo = AppUser();
-
 
   @override
   Widget build(BuildContext context) {
-    //TODO update what details you want
 
     //for showing loading
     bool loading = false;
-
     // this below line is used to make notification bar transparent
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: Colors.transparent));
@@ -113,10 +108,12 @@ class _RegisterState extends State<Register> {
                           margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
                           padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
                           child: TextFormField(
-                            autovalidateMode: AutovalidateMode.onUserInteraction, onChanged: (value) {
+                            onChanged:(value){
                               userinfo.email = value;
                             },
-                            validator: ValidationService().emailValidator,
+                            validator: MultiValidator([
+                            RequiredValidator(errorText: "* Required"),
+                            EmailValidator(errorText: "Enter a valid email ")]),
                             textAlign: TextAlign.center,
                             decoration: InputDecoration(
                                 hintText: 'Email',
@@ -163,10 +160,17 @@ class _RegisterState extends State<Register> {
                           padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
                           child: TextFormField(
                             obscureText: true,
-                              autovalidateMode: AutovalidateMode.onUserInteraction,onChanged: (value) {
-                              userinfo.password = value;
+                            onChanged: (value){
+                              userinfo.password=value;
                             },
-                            validator: ValidationService().passwordValidator,
+                            validator:MultiValidator([
+                              RequiredValidator(errorText: "* Required"),
+                              MinLengthValidator(6,
+                                  errorText: "Password should be at least 6 characters"),
+                              MaxLengthValidator(15,
+                                  errorText:
+                                  "Password should not be greater than 15 characters")
+                            ]),
                             textAlign: TextAlign.center,
                             decoration: InputDecoration(
                               hintText: 'Password',
@@ -185,20 +189,25 @@ class _RegisterState extends State<Register> {
                       title: 'Register',
                       colour: Color(0xFFFAD02C),
                       onPressed: ()async {
-                       try {
-                         final newUser = await _auth
-                             .createUserWithEmailAndPassword(
-                             email: userinfo.email.trim(), password: userinfo.password.toString());
-                         if (newUser != null){
-                           Navigator.push(
-                             context,
-                             MaterialPageRoute(builder: (context) => CompleteProfile()),
-                           );
-                         }
-                       }
-                       catch(e){
-                         print(e);
-                       }
+                        if (_formKey.currentState.validate()) {
+                          try {
+                            final newUser = await _auth
+                                .createUserWithEmailAndPassword(
+                                email: userinfo.email.trim(), password: userinfo.password.toString());
+                            if (newUser != null){
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => CompleteProfile()),
+                              );
+                            }
+                          }
+                          catch(e){
+                            print(e);
+                          }
+                        } else {
+                          print("Not Validated");
+                        }
+
                       }),
 
 
@@ -248,3 +257,5 @@ class _RegisterState extends State<Register> {
     );
   }
 }
+
+

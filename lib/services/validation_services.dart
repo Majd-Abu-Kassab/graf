@@ -41,9 +41,9 @@ class ValidationService {
       return 'Please enter a valid password';
     }
 
-    if (value.length < 8) {
+    if (value.length < 6) {
       print('pass');
-      return 'Please enter a password with more than 8 characters';
+      return ' Password should be at least 6 characters ';
     }
 
     String pattern =
