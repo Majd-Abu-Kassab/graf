@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie_animation/components/AddCars.dart';
+import 'package:lottie_animation/components/TotalRev.dart';
 import 'package:lottie_animation/components/rounded_button.dart';
 import 'package:lottie_animation/models/Constants.dart';
 import 'package:lottie_animation/services/Delete_doc.dart';
@@ -20,7 +21,7 @@ class _AdminState extends State<Admin>  with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    _controller = TabController(length: 2,vsync: this );
+    _controller = TabController(length: 3,vsync: this );
   }
   @override
   void dispose() {
@@ -33,7 +34,7 @@ class _AdminState extends State<Admin>  with SingleTickerProviderStateMixin {
     final userEmail = user.email;
     //AppUser userinfo = AppUser();
     return DefaultTabController(
-      length: 2,
+      length: 3,
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Color(0xFF90ADC6),
@@ -43,6 +44,7 @@ class _AdminState extends State<Admin>  with SingleTickerProviderStateMixin {
             tabs: [
               Tab(icon: Icon(Icons.supervised_user_circle)),
               Tab(icon: Icon(Icons.add)),
+              Tab(icon:Icon(Icons.attach_money_rounded))
             ],
           ),
           title: Align(
@@ -56,7 +58,6 @@ class _AdminState extends State<Admin>  with SingleTickerProviderStateMixin {
         body: TabBarView(
           controller: _controller,
             children: [
-
           SafeArea(
             child: StreamBuilder<QuerySnapshot>(
                 stream: FirebaseFirestore.instance
@@ -80,12 +81,12 @@ class _AdminState extends State<Admin>  with SingleTickerProviderStateMixin {
                           child: Column(children: <Widget>[
                             ListTile(
                               title: Text(info['name'], style: kHeadingStyle),
-                              subtitle: Text(
-                                'Email: ' + userEmail,
-                                style: TextStyle(
-                                  color: greyColor,
-                                ),
-                              ),
+                              // subtitle: Text(
+                              //   'Email: ' + userEmail,
+                              //   style: TextStyle(
+                              //     color: greyColor,
+                              //   ),
+                              // ),
                               trailing: Padding(
                                 padding: const EdgeInsets.only(bottom: 8.0),
                                 child: Text('Idnumber: ' + info['idnumber']),
@@ -152,6 +153,7 @@ class _AdminState extends State<Admin>  with SingleTickerProviderStateMixin {
                 }),
           ),
           AddCars(),
+              Total(),
         ]),
       ),
     );

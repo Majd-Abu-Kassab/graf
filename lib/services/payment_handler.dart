@@ -1,11 +1,14 @@
 import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_braintree/flutter_braintree.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/scheduler.dart';
 import 'package:lottie_animation/models/order_model.dart';
+import 'package:lottie_animation/screens/homescreen.dart';
 
 class BillingFields {
   static String get firstName => 'firstName';
@@ -67,10 +70,10 @@ class PaymentHandler {
     print(nonce);
     checkout(nonce!);
     SchedulerBinding.instance!.addPostFrameCallback((_) {
-      // Navigator.push(
-      //   context,
-      //   MaterialPageRoute(builder: (context) => Checkout(car: '',)),
-      // );
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => Homescreen()),
+      );
     });
   }
 
