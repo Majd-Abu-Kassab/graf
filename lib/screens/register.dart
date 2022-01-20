@@ -33,7 +33,6 @@ class _RegisterState extends State<Register>{
         body: Stack(
           children: <Widget>[
             Image.asset(
-              //TODO update this
               'assets/car1.gif',
               fit: BoxFit.fill,
               height: double.infinity,
@@ -68,7 +67,6 @@ class _RegisterState extends State<Register>{
                     height: 4,
                   ),
                   Text(
-                    //TODO update this
                     'Join PARK KING!',
                     style: TextStyle(
                       fontSize: 16.0,
@@ -128,7 +126,7 @@ class _RegisterState extends State<Register>{
                   SizedBox(
                     height: 16,
                   ),
-                  //TODO remove unwanted containers
+
                   Stack(
                     children: <Widget>[
                       Container(

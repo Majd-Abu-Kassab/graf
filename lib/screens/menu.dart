@@ -1,9 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie_animation/screens/login.dart';
 import 'package:lottie_animation/screens/order_history.dart';
 import 'package:lottie_animation/screens/profile.dart';
 
 class NavDrawer extends StatelessWidget {
+  final _auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -42,8 +44,8 @@ class NavDrawer extends StatelessWidget {
                 leading: Icon(Icons.logout),
                 title: Text('Log out'),
                 onTap: (){
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Login()),);
+                  _auth.signOut();
+                  Navigator.pop(context);
                 },
               ),
             ],

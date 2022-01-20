@@ -3,7 +3,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie_animation/components/AddCars.dart';
-import 'package:lottie_animation/components/TotalRev.dart';
 import 'package:lottie_animation/components/rounded_button.dart';
 import 'package:lottie_animation/models/Constants.dart';
 import 'package:lottie_animation/services/Delete_doc.dart';
@@ -21,7 +20,7 @@ class _AdminState extends State<Admin>  with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    _controller = TabController(length: 3,vsync: this );
+    _controller = TabController(length: 2,vsync: this );
   }
   @override
   void dispose() {
@@ -34,7 +33,7 @@ class _AdminState extends State<Admin>  with SingleTickerProviderStateMixin {
     final userEmail = user.email;
     //AppUser userinfo = AppUser();
     return DefaultTabController(
-      length: 3,
+      length: 2,
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Color(0xFF90ADC6),
@@ -44,7 +43,6 @@ class _AdminState extends State<Admin>  with SingleTickerProviderStateMixin {
             tabs: [
               Tab(icon: Icon(Icons.supervised_user_circle)),
               Tab(icon: Icon(Icons.add)),
-              Tab(icon:Icon(Icons.attach_money_rounded))
             ],
           ),
           title: Align(
@@ -153,7 +151,6 @@ class _AdminState extends State<Admin>  with SingleTickerProviderStateMixin {
                 }),
           ),
           AddCars(),
-              Total(),
         ]),
       ),
     );
