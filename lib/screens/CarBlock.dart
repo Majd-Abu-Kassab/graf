@@ -4,8 +4,6 @@ import 'package:lottie_animation/models/Car.dart';
 import 'package:lottie_animation/models/Constants.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
-
-
 class CarBlock extends StatelessWidget {
   CarBlock(this.car);
   final Car car;
@@ -58,7 +56,6 @@ class CarBlock extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Container(
-                      // padding: EdgeInsets.all(8.0),
                       child: Text(
                         '${car.Price}',
                         textAlign: TextAlign.right,
@@ -67,8 +64,6 @@ class CarBlock extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      //color: Colors.red,
-                      // padding: EdgeInsets.all(8.0),
                       child: Text(
                         'Total',
                         textAlign: TextAlign.right,

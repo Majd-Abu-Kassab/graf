@@ -12,9 +12,6 @@ class SignInOrRegister extends StatefulWidget {
 class _SignInOrRegisterState extends State<SignInOrRegister> {
   @override
   Widget build(BuildContext context) {
-
-
-
     // this below line is used to make notification bar transparent
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: Colors.transparent));

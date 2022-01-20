@@ -3,24 +3,21 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:lottie_animation/components/rounded_button.dart';
 import 'package:lottie_animation/models/Constants.dart';
-import 'package:lottie_animation/services/payment_handler.dart';
-
 import 'checkout.dart';
 
 
-class SearchResultsScreen extends StatefulWidget {
+class AvailableCars extends StatefulWidget {
 
 
-  const SearchResultsScreen({Key key}) : super(key: key);
+  const AvailableCars({Key key}) : super(key: key);
   @override
-  _SearchResultsScreenState createState() => _SearchResultsScreenState();
+  _AvailableCarsState createState() => _AvailableCarsState();
 }
 
-class _SearchResultsScreenState extends State<SearchResultsScreen> {
+class _AvailableCarsState extends State<AvailableCars> {
 
   @override
   void initState() {
-    // PaymentHandler().getClientToken(context);
     super.initState();
   }
 
@@ -99,7 +96,6 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
                                   crossAxisAlignment: CrossAxisAlignment.stretch,
                                   children: [
                                     Container(
-                                      // padding: EdgeInsets.all(8.0),
                                       child: Text(
                                         info['Price'].toString(),
                                         textAlign: TextAlign.right,
@@ -109,8 +105,6 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
                                     ),
 
                                     Container(
-                                      //color: Colors.red,
-                                      // padding: EdgeInsets.all(8.0),
                                       child: Text(
                                         'Total'+' JD',
                                         textAlign: TextAlign.right,
@@ -121,7 +115,6 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
                                       ),
                                     ),
                                     RoundedButton(title: 'BOOK NOW', colour:Color(0xFFFAD02C) , onPressed:(){
-                                      // PaymentHandler(amount:info['Price'].toString(),carDetails: info['Name'] + '-'+ info['Model'] + '-'+ info['Color']).getClientToken(context);
                                       Navigator.push(context, MaterialPageRoute(builder: (context) => Checkout(info:info)));
                                     } ),
                                   ],

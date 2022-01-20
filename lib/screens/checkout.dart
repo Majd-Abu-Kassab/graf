@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-//import 'package:lottie_animation/models/chechoutconst.dart';
 import 'package:lottie_animation/services/payment_handler.dart';
 
 class Checkout extends StatelessWidget {
@@ -192,7 +191,6 @@ class Checkout extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                       primary:Colors.blueGrey,
                       elevation: 5,
-                      // padding: EdgeInsets.fromLTRB(55, 10, 55, 10),
                       padding: const EdgeInsets.symmetric(horizontal: 110, vertical: 25),
                     ),
                   ),

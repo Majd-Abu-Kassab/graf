@@ -4,7 +4,6 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'dart:math' show cos, sqrt, asin;
-
 import '../Secrets.dart';
 import 'AvailableCars.dart';
 import 'menu.dart';
@@ -518,9 +517,6 @@ class _MapViewState extends State<MapView> {
                                   ),
                                 ),
                               ),
-                              // RoundedButton(title: 'Available Cars', colour: Color(0xFFFAD02C), onPressed: (){
-                              //   Navigator.push(context, MaterialPageRoute(builder: (context) =>  SearchResultsScreen()));
-                              // })
                               ElevatedButton( onPressed: (_startAddress != '' &&
                                   _destinationAddress != '')
                                   ? () async {
@@ -533,7 +529,7 @@ class _MapViewState extends State<MapView> {
                                   if (polylineCoordinates.isNotEmpty)
                                     polylineCoordinates.clear();
                                   _placeDistance = null;
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => SearchResultsScreen()));
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => AvailableCars()));
                                 });
 
                               }
