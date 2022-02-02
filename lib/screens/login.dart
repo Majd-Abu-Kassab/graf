@@ -93,7 +93,7 @@ class _LoginState extends State<Login> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: <Widget>[
                               Container(
-                                margin: EdgeInsets.only(left: 20),
+                                margin: EdgeInsets.only(left: 21),
                                 height: 22,
                                 width: 22,
                                 child: Icon(
