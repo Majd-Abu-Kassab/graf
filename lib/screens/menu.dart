@@ -44,8 +44,8 @@ class NavDrawer extends StatelessWidget {
                 leading: Icon(Icons.logout),
                 title: Text('Log out'),
                 onTap: (){
-                  _auth.signOut();
-                  Navigator.pop(context);
+                   _auth.signOut();
+                   Navigator.push(context, MaterialPageRoute(builder: (context)=>Login()),);
                 },
               ),
             ],
